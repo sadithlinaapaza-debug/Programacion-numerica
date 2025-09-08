@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portafolio • Programación Numérica | FINESI - UNA Puno</title>
+  <style>
+    :root{--bg:#071126;--card:#0b1220;--text:#e6eef8;--muted:#9fb0c9;--pri:#60a5fa;--acc:#7c3aed}
+    *{box-sizing:border-box}
+    body{margin:0;font:500 16px/1.6 system-ui,Segoe UI,Roboto;background:linear-gradient(180deg,#041028,#071126);color:var(--text)}
+    .wrap{max-width:1000px;margin:auto;padding:18px}
+    header{display:flex;justify-content:space-between;align-items:center;padding:10px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--pri),var(--acc))}
+    h1{margin:0;font-size:clamp(22px,3.5vw,34px)}
+    .subtitle{color:var(--muted);font-size:13px}
+    .card{background:rgba(255,255,255,0.02);border:1px solid rgba(159,176,201,0.09);padding:16px;border-radius:14px;margin-top:12px}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+    .col-4{grid-column:span 4}
+    .col-6{grid-column:span 6}
+    .col-12{grid-column:span 12}
+    a{color:var(--pri);text-decoration:none}
+    ul{margin:8px 0 0 18px}
+    li{margin:6px 0}
+    .btn{background:var(--pri);color:#041026;padding:8px 12px;border-radius:10px;border:0;font-weight:700}
+    footer{text-align:center;color:var(--muted);margin:26px 0}
+    @media (max-width:860px){.col-4,.col-6{grid-column:span 12}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden></div>
+        <div>
+          <div style="font-weight:800">Portafolio — Programación Numérica</div>
+          <div class="subtitle">FINESI · Universidad Nacional del Altiplano, Puno</div>
+        </div>
+      </div>
+      <a class="btn" href="#actividades">Ver actividades</a>
+    </header>
+
+    <main>
+      <section class="card">
+        <h1>Hola — Portafolio de <span style="color:var(--pri)">Programación Numérica</span></h1>
+        <p class="subtitle">Registro de prácticas, ejercicios y proyectos del curso. Organiza fechas, enlaces y reflexiones.</p>
+      </section>
+
+      <section id="actividades" class="grid">
+        <div class="col-12"><h2 style="margin-top:12px">📌 Actividades sugeridas</h2><p class="subtitle">Lista preparada para anotar cada entrega.</p></div>
+
+        <article class="col-4 card">
+          <h3>Módulo 1 — Errores y precisión</h3>
+          <ul>
+            <li><b>Fecha:</b> 2025-08-18</li>
+            <li><b>Tema:</b> Tipos de error y representaci&oacute;n</li>
+            <li><b>Entrega:</b> <a href="#">Informe 01</a></li>
+            <li><b>Reflexión:</b> —</li>
+          </ul>
+        </article>
+
+        <article class="col-4 card">
+          <h3>Módulo 2 — Resolución de raíces</h3>
+          <ul>
+            <li><b>Fecha:</b> 2025-08-25</li>
+            <li><b>Tema:</b> Bisección, Newton-Raphson</li>
+            <li><b>Entrega:</b> <a href="#">Práctica 02</a></li>
+            <li><b>Reflexión:</b> —</li>
+          </ul>
+        </article>
+
+        <article class="col-4 card">
+          <h3>Módulo 3 — Sistemas lineales</h3>
+          <ul>
+            <li><b>Fecha:</b> 2025-09-01</li>
+            <li><b>Tema:</b> Eliminación de Gauss, LU</li>
+            <li><b>Entrega:</b> <a href="#">Práctica 03</a></li>
+            <li><b>Reflexión:</b> —</li>
+          </ul>
+        </article>
+
+        <article class="col-4 card">
+          <h3>Módulo 4 — Interpolación y aproximación</h3>
+          <ul>
+            <li><b>Fecha:</b> 2025-09-08</li>
+            <li><b>Tema:</b> Polinomios de Lagrange, splines</li>
+            <li><b>Entrega:</b> <a href="#">Práctica 04</a></li>
+            <li><b>Reflexión:</b> —</li>
+          </ul>
+        </article>
+
+        <article class="col-4 card">
+          <h3>Módulo 5 — Integración numérica</h3>
+          <ul>
+            <li><b>Fecha:</b> 2025-09-15</li>
+            <li><b>Tema:</b> Trapecio, Simpson</li>
+            <li><b>Entrega:</b> <a href="#">Práctica 05</a></li>
+            <li><b>Reflexión:</b> —</li>
+          </ul>
+        </article>
+
+        <article class="col-4 card">
+          <h3>Módulo 6 — EDOs y aplicaciones</h3>
+          <ul>
+            <li><b>Fecha:</b> 2025-09-22</li>
+            <li><b>Tema:</b> Euler, Runge-Kutta</li>
+            <li><b>Entrega:</b> <a href="#">Práctica 06</a></li>
+            <li><b>Reflexión:</b> —</li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="proyectos" class="card" style="margin-top:12px">
+        <h2>🧪 Proyecto integrador</h2>
+        <p>Describir el problema (p. ej. simulación física, optimizaci&oacute;n numérica), objetivos y tecnología usada (Python/Octave/Matlab).</p>
+        <p><b>Repositorio:</b> <a href="#">enlace</a> · <b>Informe:</b> <a href="#">descargar</a></p>
+      </section>
+
+      <section id="recursos" class="card" style="margin-top:12px">
+        <h2>📚 Recursos</h2>
+        <ul>
+          <li>Notas de clase — <a href="#">descargar</a></li>
+          <li>Bibliograf&iacute;a recomendada — <a href="#">enlace</a></li>
+          <li>Códigos de ejemplo — <a href="#">GitHub</a></li>
+        </ul>
+      </section>
+
+      <section id="contacto" class="grid" style="margin-top:12px">
+        <div class="col-6 card">
+          <h3>Contacto</h3>
+          <p><b>Estudiante:</b> Sadith Lina Apaza</p>
+          <p><b>Correo:</b> sadithlinaapaza@gmail.com</p>
+        </div>
+        <div class="col-6 card">
+          <h3>Bitácora rápida</h3>
+          <ul>
+            <li>[dd/mm] avance — notas</li>
+            <li>[dd/mm] avance — notas</li>
+          </ul>
+        </div>
+      </section>
+
+      <footer>© 2025 • Portafolio académico — Programación Numérica • FINESI, UNA Puno</footer>
+    </main>
+  </div>
+</body>
+</html>
