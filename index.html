@@ -96,30 +96,38 @@ print("Operaciones encontradas:", analizador.obtener_operaciones())
             <li><b>Tema:</b> grafica funciones</li>
             <li><b>Entrega:</b> <a href="#">Práctica 02</a></li>
             <pre><code class="language-python">
-class Graficadora:
-    def __init__(self, expresion):
-        self.expresion = expresion
+class GraficadoraLineal:
+    def __init__(self, expresion1, expresion2):
+        self.expresion1 = expresion1
+        self.expresion2 = expresion2
         self.x = []
-        self.y = []
+        self.y1 = []
+        self.y2 = []
 
     def generar_valores(self):
         x = -10
         while x <= 10:
             self.x.append(x)
-            self.y.append(eval(self.expresion))
+            self.y1.append(eval(self.expresion1))
+            self.y2.append(eval(self.expresion2))
             x = x + 1
 
     def graficar_consola(self):
         for i in range(len(self.x)):
-            
-            espacios = " " * (self.y[i] + 20)  
-            print(f"x={self.x[i]:>3} | {espacios}*")
+            espacios1 = " " * (self.y1[i] + 20)
+            linea = f"x={self.x[i]:>3} | {espacios1}*"
 
-funcion = input("Ingresa la funcion en terminos de x : ")
+            espacios2 = " " * (self.y2[i] + 20)
+            linea2 = f"{espacios2}#"
 
-mi_grafica = Graficadora(funcion)
+            print(linea + linea2)
+
+f1 = input("Ingresa la primera funcion lineal: ")
+f2 = input("Ingresa la segunda funcion lineal: ")
+
+mi_grafica = GraficadoraLineal(f1, f2)
 mi_grafica.generar_valores()
-mi_grafica.graficar_consola() 
+mi_grafica.graficar_consola()
 </code></pre>
 </div>
             <li><b>Reflexión:</b> —</li>
