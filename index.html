@@ -61,11 +61,38 @@
         </article>
 
         <article class="col-4 card">
-          <h3>Módulo 2 — Resolución de raíces</h3>
+          <h3>Módulo 2 — Graficadora</h3>
           <ul>
-            <li><b>Fecha:</b> 2025-08-25</li>
-            <li><b>Tema:</b> Bisección, Newton-Raphson</li>
+            <li><b>Fecha:</b> 2025-09-23</li>
+            <li><b>Tema:</b> grafica funciones</li>
             <li><b>Entrega:</b> <a href="#">Práctica 02</a></li>
+            <pre><code class="language-python">
+class Graficadora:
+    def __init__(self, expresion):
+        self.expresion = expresion
+        self.x = []
+        self.y = []
+
+    def generar_valores(self):
+        x = -10
+        while x <= 10:
+            self.x.append(x)
+            self.y.append(eval(self.expresion))
+            x = x + 1
+
+    def graficar_consola(self):
+        for i in range(len(self.x)):
+            
+            espacios = " " * (self.y[i] + 20)  
+            print(f"x={self.x[i]:>3} | {espacios}*")
+
+funcion = input("Ingresa la funcion en terminos de x : ")
+
+mi_grafica = Graficadora(funcion)
+mi_grafica.generar_valores()
+mi_grafica.graficar_consola() 
+</code></pre>
+</div>
             <li><b>Reflexión:</b> —</li>
           </ul>
         </article>
