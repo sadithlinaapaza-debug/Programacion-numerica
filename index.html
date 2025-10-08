@@ -135,21 +135,151 @@ mi_grafica.graficar_consola()
         </article>
 
         <article class="col-4 card">
-          <h3>Módulo 3 — Sistemas lineales</h3>
+          <h3>Módulo 3 — Metodo Newton Raphson</h3>
           <ul>
-            <li><b>Fecha:</b> 2025-09-01</li>
-            <li><b>Tema:</b> Eliminación de Gauss, LU</li>
+            <li><b>Fecha:</b> 2025-10-08</li>
+            <li><b>Tema:</b> Newton Raphson </li>
             <li><b>Entrega:</b> <a href="#">Práctica 03</a></li>
+            <pre><code class="language-python">
+          import math
+
+class NewtonRaphson:
+    def __init__(self):
+        pass
+
+    def f(self, x, expr):
+        return eval(expr, {"__builtins__":None}, {"x":x, **math.__dict__})
+
+    def ejecutar(self):
+        expr = input("Ingrese f(x): ").strip()
+        dexpr = input("Ingrese f'(x): ").strip()
+        x0 = float(input("x0: "))
+        tol = float(input("Tolerancia (ej: 1e-6): "))
+        maxit = int(input("Iteraciones maximas: "))
+        x = x0
+        for i in range(1, maxit+1):
+            fx = self.f(x, expr)
+            dfx = self.f(x, dexpr)
+            if dfx == 0:
+                print("Derivada cero. Deteniendo.")
+                return
+            x_new = x - fx/dfx
+            if abs(x_new - x) < tol:
+                print(f"Raíz: {x_new}")
+                print(f"f(raíz): {self.f(x_new, expr)}")
+                print(f"Iteraciones: {i}")
+                return
+            x = x_new
+        print(f"Resultado tras {maxit} iter: {x}")
+        print(f"f(aprox): {self.f(x, expr)}")
+
+if __name__ == "__main__":
+    NewtonRaphson().ejecutar()
+              </code></pre>
+</div>
+            <p>Descargar tarea: <a href="Newton Raphson.py" download>Newton Raphson.py</a></p>
             <li><b>Reflexión:</b> —</li>
           </ul>
         </article>
 
         <article class="col-4 card">
-          <h3>Módulo 4 — Interpolación y aproximación</h3>
+          <h3>Módulo 4 — Metodo Punto Fijo</h3>
           <ul>
-            <li><b>Fecha:</b> 2025-09-08</li>
-            <li><b>Tema:</b> Polinomios de Lagrange, splines</li>
+            <li><b>Fecha:</b> 2025-10-08</li>
+            <li><b>Tema:</b> Punto Fijo</li>
             <li><b>Entrega:</b> <a href="#">Práctica 04</a></li>
+            <pre><code class="language-python">
+              import math
+
+class PuntoFijo:
+    def __init__(self):
+        pass
+
+    def g(self, x, expr):
+        safe_locals = {
+            "x": x,
+            "ln": math.log,        
+            "log": math.log,       
+            "log10": math.log10,   
+            "exp": math.exp,
+            "sqrt": math.sqrt,
+            "e": math.e,
+            "pi": math.pi,
+            **{k: getattr(math, k) for k in dir(math) if not k.startswith("__")}
+        }
+        return eval(expr, {"__builtins__": None}, safe_locals)
+
+    def ejecutar(self):
+        expr = input("Ingrese g(x): ").strip()
+        x0 = float(input("x0: "))
+        tol = float(input("Tolerancia (ej: 1e-6): "))
+        maxit = int(input("Iteraciones maximas: "))
+        x = x0
+        for i in range(1, maxit+1):
+            x_new = self.g(x, expr)
+            if abs(x_new - x) < tol:
+                print(f"Punto fijo: {x_new}")
+                print(f"Iteraciones: {i}")
+                return
+            x = x_new
+        print(f"Resultado tras {maxit} iter: {x}")
+        print(f"g(aprox): {self.g(x, expr)}")
+
+if __name__ == "__main__":
+    PuntoFijo().ejecutar()
+               </code></pre>
+</div>
+               <pre><code class="language-python">
+              import math
+
+class PuntoFijo:
+    def __init__(self):
+        pass
+
+    def g(self, x, expr):
+        safe_locals = {
+            "x": x,
+            "ln": math.log,        
+            "log": math.log,       
+            "log10": math.log10,   
+            "exp": math.exp,
+            "sqrt": math.sqrt,
+            "e": math.e,
+            "pi": math.pi,
+            **{k: getattr(math, k) for k in dir(math) if not k.startswith("__")}
+        }
+        return eval(expr, {"__builtins__": None}, safe_locals)
+
+    def ejecutar(self):
+        expr = input("Ingrese g(x): ").strip()
+        x0 = float(input("x0: "))
+        tol = float(input("Tolerancia (ej: 1e-6): "))
+        maxit = int(input("Iteraciones máximas: "))
+
+        x = x0
+        for i in range(1, maxit + 1):
+            x_new = self.g(x, expr)
+            error = abs((x_new - x) / x_new) * 100 if x_new != 0 else float('inf')
+
+            print(f"Iteración {i}: x = {x_new:.10f}, Error = {error:.6f}%")
+
+            if error < tol * 100:  
+                print(f"\nPunto fijo: {x_new}")
+                print(f"Iteraciones: {i}")
+                print(f"Error porcentual final: {error:.6f}%")
+                return
+
+            x = x_new
+
+        print(f"\nResultado tras {maxit} iteraciones: {x}")
+        print(f"Error porcentual final: {error:.6f}%")
+
+if __name__ == "__main__":
+    PuntoFijo().ejecutar()
+               </code></pre>
+</div>
+            <p>Descargar tarea 1: <a href="Punto Fijo 1.py" download>Punto Fijo 1.py</a></p>
+            <p>Descargar tarea 2: <a href="punto fijo.py" download>punto fijo.py</a></p>
             <li><b>Reflexión:</b> —</li>
           </ul>
         </article>
