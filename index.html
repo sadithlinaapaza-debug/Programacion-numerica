@@ -213,7 +213,8 @@ if __name__ == "__main__":
           <li><b>Tema:</b> Punto Fijo</li>
           <li><b>Entrega:</b> Práctica 04</li>
         </ul>
-        <pre><code class="language-python">import math
+        <pre><code class="language-python">
+          import math
 
 class PuntoFijo:
     def __init__(self):
@@ -234,24 +235,33 @@ class PuntoFijo:
         return eval(expr, {"__builtins__": None}, safe_locals)
 
     def ejecutar(self):
-        expr = input("Ingrese g(x): ").strip()
+        expr = input("Ingrese g(x) para x = g(x) (ej: (x+2/x)/2 o ln(x+1)): ").strip()
         x0 = float(input("x0: "))
         tol = float(input("Tolerancia (ej: 1e-6): "))
-        maxit = int(input("Iteraciones maximas: "))
+        maxit = int(input("Iteraciones máximas: "))
+
         x = x0
-        for i in range(1, maxit+1):
+        for i in range(1, maxit + 1):
             x_new = self.g(x, expr)
-            if abs(x_new - x) < tol:
-                print(f"Punto fijo: {x_new}")
+            error = abs((x_new - x) / x_new) * 100 if x_new != 0 else float('inf')
+
+            print(f"Iteración {i}: x = {x_new:.10f}, Error = {error:.6f}%")
+
+            if error < tol * 100:  
+                print(f"\nPunto fijo: {x_new}")
                 print(f"Iteraciones: {i}")
+                print(f"Error porcentual final: {error:.6f}%")
                 return
+
             x = x_new
-        print(f"Resultado tras {maxit} iter: {x}")
-        print(f"g(aprox): {self.g(x, expr)}")
+
+        print(f"\nResultado tras {maxit} iteraciones: {x}")
+        print(f"Error porcentual final: {error:.6f}%")
 
 if __name__ == "__main__":
-    PuntoFijo().ejecutar()</code></pre>
-        <p><a class="download" href="Punto Fijo 1.py" download>Descargar Punto Fijo 1.py</a></p>
+    PuntoFijo().ejecutar()
+    </code></pre>
+        <p><a class="download" href="punto fijo.py" download>Descargar Punto Fijo 1.py</a></p>
         <p class="reflection"><strong>Reflexión:</strong> —</p>
       </article>
 
