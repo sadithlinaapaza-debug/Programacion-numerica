@@ -1,62 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portafolio • Programación Numérica | FINESI - UNA Puno</title>
+  <title>Repositorio - Programación Numérica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#071126;--card:#0b1220;--text:#e6eef8;--muted:#9fb0c9;--pri:#60a5fa;--acc:#7c3aed}
+    :root{
+      --bg: #E8F6FF; /* azul pastel claro */
+      --card: #fffef6;
+      --accent: #2b6cb0;
+      --muted: #23415a;
+      --shadow: 0 6px 18px rgba(35,65,90,0.06);
+      --radius: 12px;
+      --mono: 'Fira Code', monospace;
+      --ui: 'Inter', system-ui, Arial, sans-serif;
+    }
     *{box-sizing:border-box}
-    body{margin:0;font:500 16px/1.6 system-ui,Segoe UI,Roboto;background:linear-gradient(180deg,#041028,#071126);color:var(--text)}
-    .wrap{max-width:1000px;margin:auto;padding:18px}
-    header{display:flex;justify-content:space-between;align-items:center;padding:10px 0}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--pri),var(--acc))}
-    h1{margin:0;font-size:clamp(22px,3.5vw,34px)}
-    .subtitle{color:var(--muted);font-size:13px}
-    .card{background:rgba(255,255,255,0.02);border:1px solid rgba(159,176,201,0.09);padding:16px;border-radius:14px;margin-top:12px}
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
-    .col-4{grid-column:span 4}
-    .col-6{grid-column:span 6}
-    .col-12{grid-column:span 12}
-    a{color:var(--pri);text-decoration:none}
-    ul{margin:8px 0 0 18px}
-    li{margin:6px 0}
-    .btn{background:var(--pri);color:#041026;padding:8px 12px;border-radius:10px;border:0;font-weight:700}
-    footer{text-align:center;color:var(--muted);margin:26px 0}
-    @media (max-width:860px){.col-4,.col-6{grid-column:span 12}}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--ui);
+      background:var(--bg);
+      color:var(--muted);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.55;
+      padding:24px;
+    }
+    .container{max-width:1100px;margin:0 auto}
+
+    /* Header principal (información académica) */
+    .site-header{
+      background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+      border-radius:14px;padding:18px;margin-bottom:20px;display:flex;gap:18px;align-items:center;box-shadow:var(--shadow)
+    }
+    .badge{
+      background:linear-gradient(135deg,var(--accent),#7fb3ff);color:white;font-weight:700;padding:12px 16px;border-radius:10px;font-size:18px
+    }
+    .site-header .meta{display:flex;flex-direction:column;gap:4px}
+    .site-header h1{margin:0;font-size:18px}
+    .site-header p{margin:0;font-size:13px;color:rgba(35,65,90,0.85)}
+
+    /* Contact & roles */
+    .roles{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap}
+    .role{background:var(--card);border-radius:10px;padding:10px 12px;border:1px solid rgba(35,65,90,0.06);font-size:13px}
+
+    /* Grid */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;margin-top:20px}
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border:1px solid rgba(35,65,90,0.04)}
+    .card h3{margin:0 0 8px 0;font-size:15px;color:var(--muted)}
+    .card ul{padding-left:0;margin:0;list-style:none}
+    .card li{margin-bottom:8px;font-size:13px}
+    pre{background:#fcfeff;padding:12px;border-radius:8px;overflow:auto;font-family:var(--mono);font-size:13px;color:#0b2540}
+    a.download{color:var(--accent);font-weight:700;text-decoration:none}
+
+    /* Plantilla para tareas futuras */
+    .template{border:2px dashed rgba(35,65,90,0.08);padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3))}
+    .template code{display:block;background:transparent;padding:0;color:var(--muted);font-family:var(--mono)}
+
+    @media(max-width:420px){body{padding:12px}}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo" aria-hidden></div>
-        <div>
-          <div style="font-weight:800">Portafolio — Programación Numérica</div>
-          <div class="subtitle">FINESI · Universidad Nacional del Altiplano, Puno</div>
+  <main class="container">
+    <header class="site-header">
+      <div class="badge">PN</div>
+      <div>
+        <h1>Programación Numérica — FINESI</h1>
+        <p><strong>Universidad Nacional del Altiplano - Puno</strong></p>
+        <div class="roles">
+          <div class="role">Estudiante: <strong>Sadith Lina Apaza</strong></div>
+          <div class="role">Docente: <strong>ING. FRED TORRES CRUZ</strong></div>
+          <div class="role">Contacto: <strong>sadith@example.com</strong></div>
         </div>
       </div>
-      <a class="btn" href="#actividades">Ver actividades</a>
     </header>
 
-    <main>
-      <section class="card">
-        <h1>Hola — Portafolio de <span style="color:var(--pri)">Programación Numérica</span></h1>
-        <p class="subtitle">Registro de prácticas, ejercicios y proyectos del curso. Organiza fechas, enlaces y reflexiones.</p>
-      </section>
+    <section class="grid">
 
-      <section id="actividades" class="grid">
-        <div class="col-12"><h2 style="margin-top:12px">📌 Actividades sugeridas</h2><p class="subtitle">Lista preparada para anotar cada entrega.</p></div>
-
-        <article class="col-4 card">
-          <h3>Módulo 1 — Analizador de funciones</h3>
-          <ul>
-            <li><b>Fecha:</b> 2025-09-10</li>
-            <li><b>Tema:</b> Funciones </li>
-            <li><b>Entrega:</b> <a href="#"> tarea 01</a></li>
-            <pre><code class="language-python">
-class Analizador:
+      <!-- Módulo 1 -->
+      <article class="card">
+        <h3>Módulo 1 — Analizador de funciones</h3>
+        <ul>
+          <li><b>Fecha:</b> 2025-09-10</li>
+          <li><b>Tema:</b> Funciones</li>
+          <li><b>Entrega:</b> tarea 01</li>
+        </ul>
+        <pre><code class="language-python">class Analizador:
     def __init__(self, funcion):
         self.funcion = funcion
 
@@ -78,25 +108,23 @@ funcion = input("Escribe una función matemática: ")
 
 analizador = Analizador(funcion)
 
-print("\n RESULTADO ")
+print("
+ RESULTADO ")
 print("Variables encontradas:", analizador.obtener_variables())
-print("Operaciones encontradas:", analizador.obtener_operaciones())
-</code></pre>
-</div>
-            <p>Descargar tarea: <a href="analizador.py" download>analizador.py</a></p>
-            <li><b>Reflexión:</b> —</li>
-            
-          </ul>
-        </article>
+print("Operaciones encontradas:", analizador.obtener_operaciones())</code></pre>
+        <p><a class="download" href="analizador.py" download>Descargar analizador.py</a></p>
+        <p class="reflection"><strong>Reflexión:</strong> —</p>
+      </article>
 
-        <article class="col-4 card">
-          <h3>Módulo 2 — Graficadora</h3>
-          <ul>
-            <li><b>Fecha:</b> 2025-09-23</li>
-            <li><b>Tema:</b> grafica funciones</li>
-            <li><b>Entrega:</b> <a href="#">Práctica 02</a></li>
-            <pre><code class="language-python">
-class GraficadoraLineal:
+      <!-- Módulo 2 -->
+      <article class="card">
+        <h3>Módulo 2 — Graficadora</h3>
+        <ul>
+          <li><b>Fecha:</b> 2025-09-23</li>
+          <li><b>Tema:</b> gráfica funciones</li>
+          <li><b>Entrega:</b> Práctica 02</li>
+        </ul>
+        <pre><code class="language-python">class GraficadoraLineal:
     def __init__(self, expresion1, expresion2):
         self.expresion1 = expresion1
         self.expresion2 = expresion2
@@ -127,21 +155,20 @@ f2 = input("Ingresa la segunda funcion lineal: ")
 
 mi_grafica = GraficadoraLineal(f1, f2)
 mi_grafica.generar_valores()
-mi_grafica.graficar_consola()
-</code></pre>
-</div>
-            <li><b>Reflexión:</b> —</li>
-          </ul>
-        </article>
+mi_grafica.graficar_consola()</code></pre>
+        <p><a class="download" href="#" download>Descargar graficadora.py</a></p>
+        <p class="reflection"><strong>Reflexión:</strong> —</p>
+      </article>
 
-        <article class="col-4 card">
-          <h3>Módulo 3 — Metodo Newton Raphson</h3>
-          <ul>
-            <li><b>Fecha:</b> 2025-10-08</li>
-            <li><b>Tema:</b> Newton Raphson </li>
-            <li><b>Entrega:</b> <a href="#">Práctica 03</a></li>
-            <pre><code class="language-python">
-          import math
+      <!-- Módulo 3 -->
+      <article class="card">
+        <h3>Módulo 3 — Metodo Newton Raphson</h3>
+        <ul>
+          <li><b>Fecha:</b> 2025-10-08</li>
+          <li><b>Tema:</b> Newton Raphson</li>
+          <li><b>Entrega:</b> Práctica 03</li>
+        </ul>
+        <pre><code class="language-python">import math
 
 class NewtonRaphson:
     def __init__(self):
@@ -174,23 +201,20 @@ class NewtonRaphson:
         print(f"f(aprox): {self.f(x, expr)}")
 
 if __name__ == "__main__":
-    NewtonRaphson().ejecutar()
-              </code></pre>
-</div>
-            <p>Descargar tarea: <a href="Newton Raphson.py" download>Newton Raphson.py</a></p>
-            <li><b>Reflexión:</b> —</li>
-          </ul>
-        </article>
+    NewtonRaphson().ejecutar()</code></pre>
+        <p><a class="download" href="Newton Raphson.py" download>Descargar Newton Raphson.py</a></p>
+        <p class="reflection"><strong>Reflexión:</strong> —</p>
+      </article>
 
-        <article class="col-4 card">
-  <h3>Módulo 4 — Método Punto Fijo</h3>
-  <ul>
-    <li><b>Fecha:</b> 2025-10-08</li>
-    <li><b>Tema:</b> Punto Fijo</li>
-    <li><b>Entrega:</b> <a href="#">Práctica 04</a></li>
-    <li><b>Ejemplo:</b> 1</li>
-    <pre><code class="language-python">
-import math
+      <!-- Módulo 4 -->
+      <article class="card">
+        <h3>Módulo 4 — Metodo Punto Fijo</h3>
+        <ul>
+          <li><b>Fecha:</b> 2025-10-08</li>
+          <li><b>Tema:</b> Punto Fijo</li>
+          <li><b>Entrega:</b> Práctica 04</li>
+        </ul>
+        <pre><code class="language-python">import math
 
 class PuntoFijo:
     def __init__(self):
@@ -199,9 +223,9 @@ class PuntoFijo:
     def g(self, x, expr):
         safe_locals = {
             "x": x,
-            "ln": math.log,
-            "log": math.log,
-            "log10": math.log10,
+            "ln": math.log,        
+            "log": math.log,       
+            "log10": math.log10,   
             "exp": math.exp,
             "sqrt": math.sqrt,
             "e": math.e,
@@ -227,119 +251,17 @@ class PuntoFijo:
         print(f"g(aprox): {self.g(x, expr)}")
 
 if __name__ == "__main__":
-    PuntoFijo().ejecutar()
-    </code></pre>
+    PuntoFijo().ejecutar()</code></pre>
+        <p><a class="download" href="Punto Fijo 1.py" download>Descargar Punto Fijo 1.py</a></p>
+        <p class="reflection"><strong>Reflexión:</strong> —</p>
+      </article>
 
-    <li><b>Ejemplo:</b> 2</li>
-    <pre><code class="language-python">
-import math
+    </section>
 
-class PuntoFijo:
-    def __init__(self):
-        pass
+    
+      </div>
+    </section>
 
-    def g(self, x, expr):
-        safe_locals = {
-            "x": x,
-            "ln": math.log,
-            "log": math.log,
-            "log10": math.log10,
-            "exp": math.exp,
-            "sqrt": math.sqrt,
-            "e": math.e,
-            "pi": math.pi,
-            **{k: getattr(math, k) for k in dir(math) if not k.startswith("__")}
-        }
-        return eval(expr, {"__builtins__": None}, safe_locals)
-
-    def ejecutar(self):
-        expr = input("Ingrese g(x) para x = g(x) (ej: (x+2/x)/2 o ln(x+1)): ").strip()
-        x0 = float(input("x0: "))
-        tol = float(input("Tolerancia (ej: 1e-6): "))
-        maxit = int(input("Iteraciones máximas: "))
-
-        x = x0
-        for i in range(1, maxit + 1):
-            x_new = self.g(x, expr)
-            error = abs((x_new - x) / x_new) * 100 if x_new != 0 else float('inf')
-
-            print(f"Iteración {i}: x = {x_new:.10f}, Error = {error:.6f}%")
-
-            if error < tol * 100:
-                print(f"\nPunto fijo: {x_new}")
-                print(f"Iteraciones: {i}")
-                print(f"Error porcentual final: {error:.6f}%")
-                return
-
-            x = x_new
-
-        print(f"\nResultado tras {maxit} iteraciones: {x}")
-        print(f"Error porcentual final: {error:.6f}%")
-
-if __name__ == "__main__":
-    PuntoFijo().ejecutar()
-    </code></pre>
-
-    <p>Descargar tarea 1: <a href="Punto Fijo 1.py" download>Punto Fijo 1.py</a></p>
-    <p>Descargar tarea 2: <a href="punto fijo.py" download>punto fijo.py</a></p>
-    <li><b>Reflexión:</b> —</li>
-  </ul>
-</article>
-
-        <article class="col-4 card">
-          <h3>Módulo 5 — Integración numérica</h3>
-          <ul>
-            <li><b>Fecha:</b> 2025-09-15</li>
-            <li><b>Tema:</b> Trapecio, Simpson</li>
-            <li><b>Entrega:</b> <a href="#">Práctica 05</a></li>
-            <li><b>Reflexión:</b> —</li>
-          </ul>
-        </article>
-
-        <article class="col-4 card">
-          <h3>Módulo 6 — EDOs y aplicaciones</h3>
-          <ul>
-            <li><b>Fecha:</b> 2025-09-22</li>
-            <li><b>Tema:</b> Euler, Runge-Kutta</li>
-            <li><b>Entrega:</b> <a href="#">Práctica 06</a></li>
-            <li><b>Reflexión:</b> —</li>
-          </ul>
-        </article>
-      </section>
-
-      <section id="proyectos" class="card" style="margin-top:12px">
-        <h2>🧪 Proyecto integrador</h2>
-        <p>Describir el problema (p. ej. simulación física, optimizaci&oacute;n numérica), objetivos y tecnología usada (Python/Octave/Matlab).</p>
-        <p><b>Repositorio:</b> <a href="#">enlace</a> · <b>Informe:</b> <a href="#">descargar</a></p>
-      </section>
-
-      <section id="recursos" class="card" style="margin-top:12px">
-        <h2>📚 Recursos</h2>
-        <ul>
-          <li>Notas de clase — <a href="#">descargar</a></li>
-          <li>Bibliograf&iacute;a recomendada — <a href="#">enlace</a></li>
-          <li>Códigos de ejemplo — <a href="#">GitHub</a></li>
-        </ul>
-      </section>
-
-      <section id="contacto" class="grid" style="margin-top:12px">
-        <div class="col-6 card">
-          <h3>Contacto</h3>
-          <p><b>Estudiante:</b> Sadith Lina Apaza</p>
-          <p><b>Correo:</b> sadithlinaapaza@gmail.com</p>
-          <p><b>Docente:</b> FRED TORRES CRUZ  </p>
-        </div>
-        <div class="col-6 card">
-          <h3>Bitácora rápida</h3>
-          <ul>
-            <li>[dd/mm] avance — notas</li>
-            <li>[dd/mm] avance — notas</li>
-          </ul>
-        </div>
-      </section>
-
-      <footer>© 2025 • Portafolio académico — Programación Numérica • FINESI, UNA Puno</footer>
-    </main>
-  </div>
+  </main>
 </body>
 </html>
