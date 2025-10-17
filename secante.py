@@ -8,7 +8,7 @@ class Secante:
         return eval(expr, {"__builtins__":None}, {"x":x, **math.__dict__})
 
     def ejecutar(self):
-        expr = input("Ingrese f(x) como expresión en Python (ej: x**3-2*x-5): ").strip()
+        expr = input("Ingrese f(x) : ").strip()
         x0 = float(input("x0: "))
         x1 = float(input("x1: "))
         tol = float(input("Tolerancia (ej: 1e-6): "))
@@ -33,3 +33,4 @@ class Secante:
 
 if __name__ == "__main__":
     Secante().ejecutar()
+
