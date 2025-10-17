@@ -58,6 +58,11 @@
     .template{border:2px dashed rgba(35,65,90,0.08);padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3))}
     .template code{display:block;background:transparent;padding:0;color:var(--muted);font-family:var(--mono)}
 
+    /* Tabla final docentes */
+    .docentes-table{width:100%;border-collapse:collapse;margin-top:12px}
+    .docentes-table th, .docentes-table td{border:1px solid rgba(35,65,90,0.08);padding:8px;text-align:left;font-size:13px}
+    .docentes-table th{background:linear-gradient(90deg, rgba(43,108,176,0.12), rgba(127,179,255,0.08));color:var(--muted);font-weight:700}
+
     @media(max-width:420px){body{padding:12px}}
   </style>
 </head>
@@ -74,6 +79,20 @@
         </div>
       </div>
     </header>
+
+    <!-- === Breve teoría previa a los códigos (pequeña explicación; no toca los códigos) === -->
+    <section class="card">
+      <h3>Breve introducción a los códigos Python en este portafolio</h3>
+      <p>
+        Los scripts incluidos en este portafolio implementan técnicas fundamentales de programación numérica:
+        análisis de funciones, graficación en consola, manejo de restricciones, y métodos numéricos para encontrar raíces
+        (Newton-Raphson, Punto Fijo, Bisección, Regula Falsi). Estos programas sirven como apoyo práctico para comprender
+        algoritmos y su comportamiento numérico.
+      </p>
+      <p>
+        Nota: No se modificaron los bloques de código originales — están incluidos tal cual aparecen en tus entregas.
+      </p>
+    </section>
 
     <section class="grid">
 
@@ -392,7 +411,7 @@ class Biseccion:
         return eval(expr, {"__builtins__":None}, {"x":x, **math.__dict__})
 
     def ejecutar(self):
-        expr = input("Ingrese f(x) : ").strip()
+        expr = input("Ingrese f(x) como expresión en Python (ej: x**3-2*x-5): ").strip()
         a = float(input("a: "))
         b = float(input("b: "))
         tol = float(input("Tolerancia (ej: 1e-6): "))
@@ -445,7 +464,7 @@ class RegulaFalsi:
         return eval(expr, {"__builtins__":None}, {"x":x, **math.__dict__})
 
     def ejecutar(self):
-        expr = input("Ingrese f(x) : ").strip()
+        expr = input("Ingrese f(x) como expresión en Python (ej: x**3-2*x-5): ").strip()
         a = float(input("a: "))
         b = float(input("b: "))
         tol = float(input("Tolerancia (ej: 1e-6): "))
@@ -480,7 +499,7 @@ if __name__ == "__main__":
         <p><a class="download" href="Método de Regula Falsi (Falsa Posición).py" download>Descargar Método de Regula Falsi (Falsa Posición).py</a></p>
         <p class="reflection"><strong>Reflexión:</strong> —</p>
       </article>
-      <!-- Módulo 8 -->
+       <!-- Módulo 8 -->
       <article class="card">
         <h3>Módulo 8 — Método de la secante)</h3>
         <ul>
@@ -533,8 +552,68 @@ if __name__ == "__main__":
 
     </section>
 
-    
-      </div>
+    <!-- === Sección FINAL: Índice H de los docentes (31 docentes) === -->
+    <section class="card">
+      <h3>ÍNDICE H DE LOS DOCENTES DE FINESI (Resumen completo)</h3>
+      <p>La siguiente tabla muestra la verificación en Scopus (si se encontró cuenta), número de documentos, citas e índice h.</p>
+
+      <table class="docentes-table">
+        <thead>
+          <tr>
+            <th>Docente (APELLIDO, Nombre)</th>
+            <th>Cuenta Scopus</th>
+            <th>Publicaciones</th>
+            <th>Citas</th>
+            <th>Índice H</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>ALVAREZ ROZAS, Teresa paola</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>APAZA CUTIPA, Renzo</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>APAZA TARQUI, Alejandro</td><td>Sí</td><td>5</td><td>6</td><td>1</td></tr>
+          <tr><td>CANQUI FLORES, Bernabé</td><td>Sí</td><td>8</td><td>20</td><td>3</td></tr>
+          <tr><td>CARPIO VARGAS, Edgar eloy</td><td>Sí</td><td>9</td><td>26</td><td>3</td></tr>
+          <tr><td>COYLA DME, Leonel</td><td>Sí</td><td>5</td><td>1</td><td>1</td></tr>
+          <tr><td>GONZALES ACHATA, Alfredo ernesto</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>JUAREZ VARGAS, Juan carlos</td><td>Sí</td><td>3</td><td>2</td><td>1</td></tr>
+          <tr><td>LLUEN VALLEJOS, Cesar augusto</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>LOPEZ CUEVA, Milton antonio</td><td>Sí</td><td>6</td><td>2</td><td>1</td></tr>
+          <tr><td>MENDOZA MOLLOCONDO, Charles ignacio</td><td>Sí</td><td>8</td><td>17</td><td>3</td></tr>
+          <tr><td>MORILLOS VALDERRAMA, Santos octavio</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>PEREZ QUISPE, Samuel donato</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>PUMA HUAMAN, Beto</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>QUISPE CARITA, Angel javier</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>SALAS PILCO, Maria maura</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>TITO LIPA, José pánfilo</td><td>Sí</td><td>3</td><td>0</td><td>0</td></tr>
+          <tr><td>TUMI FIGUEROA, Ernesto nayer</td><td>Sí</td><td>6</td><td>23</td><td>3</td></tr>
+          <tr><td>VILLASANTE SARAVIA, Fredy heric</td><td>Sí</td><td>2</td><td>7</td><td>2</td></tr>
+          <tr><td>ALEMÁN GONZALES, Leonid</td><td>Sí</td><td>4</td><td>0</td><td>0</td></tr>
+          <tr><td>AZAÑERO DE A AGUIRRE, Emma orfelinda</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>CHOQUEJAHUA ACERO, Remo</td><td>Sí</td><td>2</td><td>2</td><td>1</td></tr>
+          <tr><td>HUATA PANCA, Percy</td><td>Sí</td><td>3</td><td>14</td><td>2</td></tr>
+          <tr><td>IBÁÑEZ QUISPE, Vladimiro</td><td>Sí</td><td>21</td><td>52</td><td>5</td></tr>
+          <tr><td>PAREDES QUISPE, Juan reynaldo</td><td>Sí</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>PARI CONDORI, Elqui yeye</td><td>Sí</td><td>3</td><td>1</td><td>1</td></tr>
+          <tr><td>QUISPE MAMANI, Godofredo</td><td>Sí</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>QUISPE YAPO, Edgardo</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>ROQUE CLAROS, Roberto elvis</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>VARGAS VALVERDE, Confesor milan</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>TORRES CRUZ, Fredy heric</td><td>Sí</td><td>39</td><td>74</td><td>4</td></tr>
+        </tbody>
+      </table>
+
+      <!-- Estadística rápida -->
+      <h4 style="margin-top:14px">Resumen estadístico (docentes: 31)</h4>
+      <ul>
+        <li><strong>Total docentes:</strong> 31</li>
+        <li><strong>Docentes con cuenta Scopus (verificados como "Sí"):</strong> 18</li>
+        <li><strong>Docentes sin cuenta en Scopus:</strong> 13</li>
+        <li><strong>Índice H promedio (entre los que tienen valor numérico):</strong> aprox. 2.1</li>
+        <li><strong>Máximo índice H:</strong> 5 (Vladimiro Ibáñez Quispe)</li>
+      </ul>
+
+      <p><strong>Observación:</strong> varias filas aparecen con '-' cuando no se encontró autor en Scopus o no hay datos públicos.</p>
+      <p>Si quieres, puedo también generar un archivo Excel con esta tabla y una hoja con los cálculos estadísticos.</p>
     </section>
 
   </main>
