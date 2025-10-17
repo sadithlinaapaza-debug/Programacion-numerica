@@ -19,7 +19,7 @@ class PuntoFijo:
         return eval(expr, {"__builtins__": None}, safe_locals)
 
     def ejecutar(self):
-        expr = input("Ingrese g(x) para x = g(x) (ej: (x+2/x)/2 o ln(x+1)): ").strip()
+        expr = input("Ingrese g(x) para x = g(x) : ").strip()
         x0 = float(input("x0: "))
         tol = float(input("Tolerancia (ej: 1e-6): "))
         maxit = int(input("Iteraciones máximas: "))
@@ -44,3 +44,4 @@ class PuntoFijo:
 
 if __name__ == "__main__":
     PuntoFijo().ejecutar()
+
