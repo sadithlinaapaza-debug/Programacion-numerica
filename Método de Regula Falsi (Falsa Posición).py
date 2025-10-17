@@ -8,7 +8,7 @@ class RegulaFalsi:
         return eval(expr, {"__builtins__":None}, {"x":x, **math.__dict__})
 
     def ejecutar(self):
-        expr = input("Ingrese f(x) como expresión en Python (ej: x**3-2*x-5): ").strip()
+        expr = input("Ingrese f(x) : ").strip()
         a = float(input("a: "))
         b = float(input("b: "))
         tol = float(input("Tolerancia (ej: 1e-6): "))
@@ -38,3 +38,4 @@ class RegulaFalsi:
 
 if __name__ == "__main__":
     RegulaFalsi().ejecutar()
+
