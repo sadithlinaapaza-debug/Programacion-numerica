@@ -392,7 +392,7 @@ class Biseccion:
         return eval(expr, {"__builtins__":None}, {"x":x, **math.__dict__})
 
     def ejecutar(self):
-        expr = input("Ingrese f(x) como expresión en Python (ej: x**3-2*x-5): ").strip()
+        expr = input("Ingrese f(x) : ").strip()
         a = float(input("a: "))
         b = float(input("b: "))
         tol = float(input("Tolerancia (ej: 1e-6): "))
@@ -445,7 +445,7 @@ class RegulaFalsi:
         return eval(expr, {"__builtins__":None}, {"x":x, **math.__dict__})
 
     def ejecutar(self):
-        expr = input("Ingrese f(x) como expresión en Python (ej: x**3-2*x-5): ").strip()
+        expr = input("Ingrese f(x) : ").strip()
         a = float(input("a: "))
         b = float(input("b: "))
         tol = float(input("Tolerancia (ej: 1e-6): "))
@@ -478,6 +478,56 @@ if __name__ == "__main__":
 
     </code></pre>
         <p><a class="download" href="Método de Regula Falsi (Falsa Posición).py" download>Descargar Método de Regula Falsi (Falsa Posición).py</a></p>
+        <p class="reflection"><strong>Reflexión:</strong> —</p>
+      </article>
+      <!-- Módulo 8 -->
+      <article class="card">
+        <h3>Módulo 8 — Método de la secante)</h3>
+        <ul>
+          <li><b>Fecha:</b> 2025-10-16</li>
+          <li><b>Tema:</b> Método de la secante</li>
+          <li><b>Entrega:</b> Práctica 08</li>
+        </ul>
+        <pre><code class="language-python">
+        import math
+
+class Secante:
+    def __init__(self):
+        pass
+
+    def f(self, x, expr):
+        return eval(expr, {"__builtins__":None}, {"x":x, **math.__dict__})
+
+    def ejecutar(self):
+        expr = input("Ingrese f(x) : ").strip()
+        x0 = float(input("x0: "))
+        x1 = float(input("x1: "))
+        tol = float(input("Tolerancia (ej: 1e-6): "))
+        maxit = int(input("Iteraciones maximas: "))
+        f0 = self.f(x0, expr)
+        f1 = self.f(x1, expr)
+        for i in range(1, maxit+1):
+            denom = (f1 - f0)
+            if denom == 0:
+                print("Denominador cero. Deteniendo.")
+                return
+            x2 = x1 - f1 * (x1 - x0) / denom
+            if abs(x2 - x1) < tol:
+                print(f"Raíz: {x2}")
+                print(f"f(raíz): {self.f(x2, expr)}")
+                print(f"Iteraciones: {i}")
+                return
+            x0, f0 = x1, f1
+            x1, f1 = x2, self.f(x2, expr)
+        print(f"Resultado tras {maxit} iter: {x1}")
+        print(f"f(aprox): {self.f(x1, expr)}")
+
+if __name__ == "__main__":
+    Secante().ejecutar()
+
+
+    </code></pre>
+        <p><a class="download" href="secante).py" download>Descargar secante.py</a></p>
         <p class="reflection"><strong>Reflexión:</strong> —</p>
       </article>
 
