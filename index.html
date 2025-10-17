@@ -132,7 +132,8 @@
       <p class="theory">El analizador identifica variables y operaciones en una expresión matemática. Esto ayuda a preprocesar la función antes de evaluarla o graficarla, detectar símbolos no válidos y preparar la expresión para métodos numéricos.</p>
 
       <h3>Código </h3>
-      <pre><code class="language-python">class Analizador:
+      <pre><code class="language-python">
+            class Analizador:
     def __init__(self, funcion):
         self.funcion = funcion
 
@@ -157,7 +158,8 @@ analizador = Analizador(funcion)
 print("
  RESULTADO ")
 print("Variables encontradas:", analizador.obtener_variables())
-print("Operaciones encontradas:", analizador.obtener_operaciones())</code></pre>
+print("Operaciones encontradas:", analizador.obtener_operaciones())
+              </code></pre>
       
         <p><a class="download" href="analizador.py" download>Descargar analizador.py</a></p>
         <p class="reflection"><strong>Reflexión:</strong> —</p>
@@ -311,6 +313,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
         </code></pre>
 
       <a class="download" href="Restricciones.py" download>Descargar Restricciones.py</a>
@@ -327,6 +330,8 @@ if __name__ == "__main__":
 
       <h3>Código </h3>
       <pre><code class="language-python">import math
+
+import math
 
 class NewtonRaphson:
     def __init__(self):
@@ -359,7 +364,8 @@ class NewtonRaphson:
         print(f"f(aprox): {self.f(x, expr)}")
 
 if __name__ == "__main__":
-    NewtonRaphson().ejecutar()</code></pre>
+    NewtonRaphson().ejecutar()
+      </code></pre>
 
       <a class="download" href="Newton Raphson.py" download>Descargar Newton Raphson.py</a>
       <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
@@ -393,7 +399,7 @@ class PuntoFijo:
         return eval(expr, {"__builtins__": None}, safe_locals)
 
     def ejecutar(self):
-        expr = input("Ingrese g(x) para x = g(x) (ej: (x+2/x)/2 o ln(x+1)): ").strip()
+        expr = input("Ingrese g(x) para x = g(x): ").strip()
         x0 = float(input("x0: "))
         tol = float(input("Tolerancia (ej: 1e-6): "))
         maxit = int(input("Iteraciones máximas: "))
@@ -441,7 +447,7 @@ class Biseccion:
         return eval(expr, {"__builtins__":None}, {"x":x, **math.__dict__})
 
     def ejecutar(self):
-        expr = input("Ingrese f(x) como expresión en Python (ej: x**3-2*x-5): ").strip()
+        expr = input("Ingrese f(x) : ").strip()
         a = float(input("a: "))
         b = float(input("b: "))
         tol = float(input("Tolerancia (ej: 1e-6): "))
@@ -493,7 +499,7 @@ class RegulaFalsi:
         return eval(expr, {"__builtins__":None}, {"x":x, **math.__dict__})
 
     def ejecutar(self):
-        expr = input("Ingrese f(x) como expresión en Python (ej: x**3-2*x-5): ").strip()
+        expr = input("Ingrese f(x) : ").strip()
         a = float(input("a: "))
         b = float(input("b: "))
         tol = float(input("Tolerancia (ej: 1e-6): "))
