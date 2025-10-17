@@ -3,92 +3,136 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Repositorio - Programación Numérica</title>
+  <title>Portafolio — Programación Numérica FINESI</title>
+
+  <!-- Google fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
   <style>
     :root{
-      --bg: #E8F6FF; /* azul pastel claro */
-      --card: #fffef6;
-      --accent: #2b6cb0;
-      --muted: #23415a;
-      --shadow: 0 6px 18px rgba(35,65,90,0.06);
-      --radius: 12px;
-      --mono: 'Fira Code', monospace;
-      --ui: 'Inter', system-ui, Arial, sans-serif;
+      --bg:#E8F6FF; /* celeste muy claro */
+      --card:#fffef6;
+      --accent:#2b6cb0;
+      --muted:#23415a;
+      --shadow:0 8px 28px rgba(35,65,90,0.08);
+      --radius:16px;
+      --mono:'Fira Code', monospace;
+      --ui:'Inter', system-ui, Arial, sans-serif;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
       font-family:var(--ui);
       background:var(--bg);
       color:var(--muted);
       -webkit-font-smoothing:antialiased;
-      line-height:1.55;
-      padding:24px;
+      padding:28px;
     }
-    .container{max-width:1100px;margin:0 auto}
 
-    /* Header principal (información académica) */
-    .site-header{
+    .sheet{
+      max-width:1100px;
+      margin:0 auto;
+      background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));
+      border-radius:18px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(35,65,90,0.03);
+    }
+
+    /* Header */
+    .hero{
       background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
-      border-radius:14px;padding:18px;margin-bottom:20px;display:flex;gap:18px;align-items:center;box-shadow:var(--shadow)
+      border-radius:14px;
+      padding:22px;
+      text-align:center;
+      margin-bottom:20px;
+      box-shadow:0 6px 18px rgba(35,65,90,0.04);
     }
-    .badge{
-      background:linear-gradient(135deg,var(--accent),#7fb3ff);color:white;font-weight:700;padding:12px 16px;border-radius:10px;font-size:18px
+    .hero h1{ margin:4px 0; font-size:20px; color:var(--accent); font-weight:700; letter-spacing:0.02em; text-transform:uppercase; }
+    .hero h2{ margin:6px 0; font-size:18px; color:#034a7a; font-weight:700; text-transform:uppercase; }
+    .hero h3{ margin:6px 0; font-size:16px; color:#0b3d66; font-weight:600; }
+    .hero p{ margin:4px 0; color:var(--muted) }
+
+    /* Nav */
+    .nav { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:18px; }
+    .nav button{
+      background:linear-gradient(180deg,#66a8ff,#007acc);
+      color:white; border:0; padding:10px 16px; border-radius:10px; font-weight:700; cursor:pointer;
+      box-shadow:0 6px 14px rgba(3,76,130,0.12);
     }
-    .site-header .meta{display:flex;flex-direction:column;gap:4px}
-    .site-header h1{margin:0;font-size:18px}
-    .site-header p{margin:0;font-size:13px;color:rgba(35,65,90,0.85)}
+    .nav button:hover{ transform:translateY(-3px) }
 
-    /* Contact & roles */
-    .roles{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap}
-    .role{background:var(--card);border-radius:10px;padding:10px 12px;border:1px solid rgba(35,65,90,0.06);font-size:13px}
+    /* Sections */
+    .section{ display:none; padding:18px; background:var(--card); border-radius:12px; margin-bottom:18px; box-shadow:0 6px 18px rgba(35,65,90,0.04) }
+    .section.active{ display:block; }
 
-    /* Grid */
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;margin-top:20px}
-    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border:1px solid rgba(35,65,90,0.04)}
-    .card h3{margin:0 0 8px 0;font-size:15px;color:var(--muted)}
-    .card ul{padding-left:0;margin:0;list-style:none}
-    .card li{margin-bottom:8px;font-size:13px}
-    pre{background:#fcfeff;padding:12px;border-radius:8px;overflow:auto;font-family:var(--mono);font-size:13px;color:#0b2540}
-    a.download{color:var(--accent);font-weight:700;text-decoration:none}
+    .section h2{ margin-top:0; color:var(--accent); font-size:18px }
+    .theory{ color:#0b3d66; line-height:1.6; margin-bottom:14px; font-size:14px; }
 
-    /* Plantilla para tareas futuras */
-    .template{border:2px dashed rgba(35,65,90,0.08);padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3))}
-    .template code{display:block;background:transparent;padding:0;color:var(--muted);font-family:var(--mono)}
+    pre{ background:#fcfeff; padding:12px; border-radius:8px; overflow:auto; font-family:var(--mono); font-size:13px; color:#0b2540; }
+    .download{ color:var(--accent); font-weight:700; text-decoration:none; display:inline-block; margin-top:8px }
+    .back{ display:inline-block; margin-top:12px; text-decoration:none; color:#034a86; font-weight:700; }
 
-    /* Tabla final docentes */
-    .docentes-table{width:100%;border-collapse:collapse;margin-top:12px}
-    .docentes-table th, .docentes-table td{border:1px solid rgba(35,65,90,0.08);padding:8px;text-align:left;font-size:13px}
-    .docentes-table th{background:linear-gradient(90deg, rgba(43,108,176,0.12), rgba(127,179,255,0.08));color:var(--muted);font-weight:700}
+    /* Table docentes */
+    .docentes-table{ width:100%; border-collapse:collapse; margin-top:12px; font-size:13px }
+    .docentes-table th, .docentes-table td{ border:1px solid rgba(35,65,90,0.08); padding:8px; text-align:left }
+    .docentes-table th{ background:linear-gradient(90deg, rgba(43,108,176,0.12), rgba(127,179,255,0.08)); color:var(--muted); font-weight:700 }
 
-    @media(max-width:420px){body{padding:12px}}
+    /* small screens */
+    @media(max-width:720px){
+      .nav{ gap:8px }
+      .hero h1{ font-size:18px }
+      .hero h2{ font-size:16px }
+    }
   </style>
 </head>
 <body>
-  <main class="container">
-    <header class="site-header">
-      <div class="badge">PN</div>
-      <div>
-        <h1>Programación Numérica — FINESI</h1>
-        <p><strong>Universidad Nacional del Altiplano - Puno</strong></p>
-        <div class="roles">
-          <div class="role">Estudiante: <strong>Sadith Lina Apaza</strong></div>
-          <div class="role">Docente: <strong>ING. FRED TORRES CRUZ</strong></div>
-        </div>
-      </div>
-    </header>
+  <div class="sheet">
+    <div class="hero">
+      <h1>UNIVERSIDAD NACIONAL DEL ALTIPLANO - PUNO</h1>
+      <h2>INGENIERÍA ESTADÍSTICA E INFORMÁTICA</h2>
+      <h3>Programación Numérica — FINESI</h3>
+      <p><strong>Estudiante:</strong> Sadith Lina Apaza &nbsp; | &nbsp; <strong>Docente:</strong> Ing. Fred Torres Cruz</p>
+    </div>
 
-      <!-- Módulo 1 -->
-      <article class="card">
-        <h3>Módulo 1 — Analizador de funciones</h3>
-        <ul>
-          <li><b>Fecha:</b> 2025-09-10</li>
-          <li><b>Tema:</b> Funciones</li>
-          <li><b>Entrega:</b> tarea 01</li>
-        </ul>
-        <pre><code class="language-python">class Analizador:
+    <div class="nav">
+      <button onclick="show('home')">Inicio</button>
+      <button onclick="show('mod1')">Módulo 1</button>
+      <button onclick="show('mod2')">Módulo 2</button>
+      <button onclick="show('mod3')">Módulo 3</button>
+      <button onclick="show('mod4')">Módulo 4</button>
+      <button onclick="show('mod5')">Módulo 5</button>
+      <button onclick="show('mod6')">Módulo 6</button>
+      <button onclick="show('mod7')">Módulo 7</button>
+      <button onclick="show('mod8')">Módulo 8</button>
+      <button onclick="show('docentes')">Docentes</button>
+    </div>
+
+    <!-- HOME / INSTRUCCIONES -->
+    <section id="home" class="section active">
+      <h2>Bienvenido/a</h2>
+      <p class="theory">Selecciona un módulo para ver la teoría, la fórmula y el código Python. Los códigos están tal cual como los entregaste; no han sido modificados. En la sección "Docentes" encontrarás la tabla completa con 31 docentes y un resumen estadístico.</p>
+      <p>Usa los botones de arriba para navegar. Cada módulo tiene un botón para volver aquí.</p>
+    </section>
+
+    <!-- Módulo 1 -->
+    <section id="mod1" class="section">
+      <h2>Módulo 1 — Analizador de funciones</h2>
+      <p class="theory">El analizador identifica variables y operaciones en una expresión matemática. Esto ayuda a preprocesar la función antes de evaluarla o graficarla, detectar símbolos no válidos y preparar la expresión para métodos numéricos.</p>
+
+      <h3>Código </h3>
+      <pre><code class="language-python">class Analizador:
     def __init__(self, funcion):
         self.funcion = funcion
 
@@ -114,19 +158,21 @@ print("
  RESULTADO ")
 print("Variables encontradas:", analizador.obtener_variables())
 print("Operaciones encontradas:", analizador.obtener_operaciones())</code></pre>
+      
         <p><a class="download" href="analizador.py" download>Descargar analizador.py</a></p>
         <p class="reflection"><strong>Reflexión:</strong> —</p>
-      </article>
 
-      <!-- Módulo 2 -->
-      <article class="card">
-        <h3>Módulo 2 — Graficadora</h3>
-        <ul>
-          <li><b>Fecha:</b> 2025-09-23</li>
-          <li><b>Tema:</b> gráfica funciones</li>
-          <li><b>Entrega:</b> Práctica 02</li>
-        </ul>
-        <pre><code class="language-python">class GraficadoraLineal:
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
+
+    <!-- Módulo 2 -->
+    <section id="mod2" class="section">
+      <h2>Módulo 2 — Graficadora</h2>
+      <p class="theory">La graficadora transforma expresiones en representaciones visuales (en este caso ASCII) para funciones lineales. Para $y = mx + b$, la pendiente $m$ y la ordenada al origen $b$ determinan la inclinación y la posición de la recta.</p>
+      <p><strong>Fórmula</strong>: \( y = m x + b \)</p>
+
+      <h3>Código </h3>
+      <pre><code class="language-python">class GraficadoraLineal:
     def __init__(self, expresion1, expresion2):
         self.expresion1 = expresion1
         self.expresion2 = expresion2
@@ -158,19 +204,20 @@ f2 = input("Ingresa la segunda funcion lineal: ")
 mi_grafica = GraficadoraLineal(f1, f2)
 mi_grafica.generar_valores()
 mi_grafica.graficar_consola()</code></pre>
-        <p><a class="download" href="#" download>Descargar graficadora.py</a></p>
+      
+ <p><a class="download" href="graficadora.py" download>Descargar graficadora.py</a></p>
         <p class="reflection"><strong>Reflexión:</strong> —</p>
-      </article>
+      
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
 
-       <!-- Módulo 3 -->
-      <article class="card">
-        <h3>Módulo 3 — Restricciones</h3>
-        <ul>
-          <li><b>Fecha:</b> 2025-10-09</li>
-          <li><b>Tema:</b> restriciones</li>
-          <li><b>Entrega:</b> Práctica 03</li>
-        </ul>
-        <pre><code class="language-python">
+    <!-- Módulo 3 -->
+    <section id="mod3" class="section">
+      <h2>Módulo 3 — Restricciones</h2>
+      <p class="theory">Las restricciones delimitan regiones del dominio donde la función es válida. Útiles en optimización para definir regiones factibles. En tu código, las restricciones se evalúan punto por punto y se muestra una cuadrícula ASCII con los puntos factibles marcados.</p>
+
+      <h3>Código </h3>
+      <pre><code class="language-python">
           class Restriccion:
     def __init__(self, expresion):
         self.expresion = expresion.replace(" ", "")
@@ -265,20 +312,21 @@ def main():
 if __name__ == "__main__":
     main()
         </code></pre>
-        <p><a class="download" href="Restricciones.py" download>Descargar Restricciones.py</a></p>
-        <p><a class="download" href="Restricciones.pdf" download>Descargar Restricciones.pdf</a></p>
-        <p class="reflection"><strong>Reflexión:</strong> —</p>
-      </article>
 
-      <!-- Módulo 4 -->
-      <article class="card">
-        <h3>Módulo 4 — Metodo Newton Raphson</h3>
-        <ul>
-          <li><b>Fecha:</b> 2025-10-08</li>
-          <li><b>Tema:</b> Newton Raphson</li>
-          <li><b>Entrega:</b> Práctica 04</li>
-        </ul>
-        <pre><code class="language-python">import math
+      <a class="download" href="Restricciones.py" download>Descargar Restricciones.py</a>
+       <p><a class="download" href="Restricciones.pdf" download>Descargar Restricciones.pdf</a></p>
+        <p class="reflection"><strong>Reflexión:</strong> —</p>
+      
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
+
+    <!-- Módulo 4 -->
+    <section id="mod4" class="section">
+      <h2>Módulo 4 — Método Newton Raphson</h2>
+      <p class="theory">Newton-Raphson es un método iterativo para encontrar raíces mediante la fórmula $x_{n+1}=x_n - f(x_n)/f'(x_n)$. Converge rápidamente si la aproximación inicial es buena y la derivada no se anula.</p>
+
+      <h3>Código </h3>
+      <pre><code class="language-python">import math
 
 class NewtonRaphson:
     def __init__(self):
@@ -312,19 +360,18 @@ class NewtonRaphson:
 
 if __name__ == "__main__":
     NewtonRaphson().ejecutar()</code></pre>
-        <p><a class="download" href="Newton Raphson.py" download>Descargar Newton Raphson.py</a></p>
-        <p class="reflection"><strong>Reflexión:</strong> —</p>
-      </article>
 
-      <!-- Módulo 5 -->
-      <article class="card">
-        <h3>Módulo 5 — Metodo Punto Fijo</h3>
-        <ul>
-          <li><b>Fecha:</b> 2025-10-08</li>
-          <li><b>Tema:</b> Punto Fijo</li>
-          <li><b>Entrega:</b> Práctica 05</li>
-        </ul>
-        <pre><code class="language-python">
+      <a class="download" href="Newton Raphson.py" download>Descargar Newton Raphson.py</a>
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
+
+    <!-- Módulo 5 -->
+    <section id="mod5" class="section">
+      <h2>Módulo 5 — Método Punto Fijo</h2>
+      <p class="theory">El método de punto fijo reescribe $f(x)=0$ como $x=g(x)$ y aplica iteraciones $x_{n+1}=g(x_n)$. Convergencia si $|g'(x)|<1$ en el intervalo.</p>
+
+      <h3>Código </h3>
+      <pre><code class="language-python">
           import math
 
 class PuntoFijo:
@@ -372,19 +419,18 @@ class PuntoFijo:
 if __name__ == "__main__":
     PuntoFijo().ejecutar()
     </code></pre>
-        <p><a class="download" href="punto fijo.py" download>Descargar Punto Fijo 1.py</a></p>
-        <p class="reflection"><strong>Reflexión:</strong> —</p>
-      </article>
 
-      <!-- Módulo 6 -->
-      <article class="card">
-        <h3>Módulo 6 — Metodo Biseccion</h3>
-        <ul>
-          <li><b>Fecha:</b> 2025-10-16</li>
-          <li><b>Tema:</b> Biseccion</li>
-          <li><b>Entrega:</b> Práctica 06</li>
-        </ul>
-        <pre><code class="language-python">
+      <a class="download" href="punto fijo.py" download>Descargar Punto Fijo 1.py</a>
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
+
+    <!-- Módulo 6 -->
+    <section id="mod6" class="section">
+      <h2>Módulo 6 — Método de Bisección</h2>
+      <p class="theory">Bisección localiza una raíz en un intervalo con cambio de signo: divide repetidamente y mantiene el subintervalo que contiene la raíz. Garantía de convergencia aunque lenta (lineal).</p>
+
+      <h3>Código </h3>
+      <pre><code class="language-python">
         import math
 
 class Biseccion:
@@ -425,19 +471,18 @@ class Biseccion:
 if __name__ == "__main__":
     Biseccion().ejecutar()
     </code></pre>
-        <p><a class="download" href="Método de Bisección.py" download>Descargar Método de Bisección .py</a></p>
-        <p class="reflection"><strong>Reflexión:</strong> —</p>
-      </article>
 
-      <!-- Módulo 7 -->
-      <article class="card">
-        <h3>Módulo 7 — Método de Regula Falsi(Falsa Posición)</h3>
-        <ul>
-          <li><b>Fecha:</b> 2025-10-16</li>
-          <li><b>Tema:</b> Método de Regula Falsi</li>
-          <li><b>Entrega:</b> Práctica 07</li>
-        </ul>
-        <pre><code class="language-python">
+      <a class="download" href="Método de Bisección.py" download>Descargar Método de Bisección .py</a>
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
+
+    <!-- Módulo 7 -->
+    <section id="mod7" class="section">
+      <h2>Módulo 7 — Método de Regula Falsi (Falsa Posición)</h2>
+      <p class="theory">Regula Falsi usa la secante entre los extremos del intervalo para aproximar la raíz: puede converger más rápido que bisección pero en algunos casos se estanca.</p>
+
+      <h3>Código </h3>
+      <pre><code class="language-python">
         import math
 
 class RegulaFalsi:
@@ -480,18 +525,18 @@ if __name__ == "__main__":
     RegulaFalsi().ejecutar()
 
     </code></pre>
-        <p><a class="download" href="Método de Regula Falsi (Falsa Posición).py" download>Descargar Método de Regula Falsi (Falsa Posición).py</a></p>
-        <p class="reflection"><strong>Reflexión:</strong> —</p>
-      </article>
-       <!-- Módulo 8 -->
-      <article class="card">
-        <h3>Módulo 8 — Método de la secante)</h3>
-        <ul>
-          <li><b>Fecha:</b> 2025-10-16</li>
-          <li><b>Tema:</b> Método de la secante</li>
-          <li><b>Entrega:</b> Práctica 08</li>
-        </ul>
-        <pre><code class="language-python">
+
+      <a class="download" href="Método de Regula Falsi (Falsa Posición).py" download>Descargar Método de Regula Falsi (Falsa Posición).py</a>
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
+
+    <!-- Módulo 8 -->
+    <section id="mod8" class="section">
+      <h2>Módulo 8 — Método de la Secante</h2>
+      <p class="theory">La secante aproxima la derivada con una diferencia finita entre dos puntos; no requiere la derivada explícita y suele converger más rápido que bisección en muchos casos.</p>
+
+      <h3>Código </h3>
+      <pre><code class="language-python">
         import math
 
 class Secante:
@@ -530,18 +575,17 @@ if __name__ == "__main__":
 
 
     </code></pre>
-        <p><a class="download" href="secante).py" download>Descargar secante.py</a></p>
-        <p class="reflection"><strong>Reflexión:</strong> —</p>
-      </article>
 
+      <a class="download" href="secante).py" download>Descargar secante.py</a>
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
     </section>
 
-    <!-- === Sección FINAL: Índice H de los docentes (31 docentes) === -->
-    <section class="card">
-      <h3>ÍNDICE H DE LOS DOCENTES DE FINESI </h3>
+    <!-- Sección FINAL: Índice H de los docentes (31 docentes) -->
+    <section id="docentes" class="section">
+      <h2>ÍNDICE H DE LOS DOCENTES DE FINESI</h2>
       <p>La siguiente tabla muestra la verificación en Scopus (si se encontró cuenta), número de documentos, citas e índice h.</p>
 
-      <table class="docentes-table">
+      <table class="docentes-table" id="tabla-docentes">
         <thead>
           <tr>
             <th>Docente (APELLIDO, Nombre)</th>
@@ -587,7 +631,7 @@ if __name__ == "__main__":
       </table>
 
       <!-- Estadística rápida -->
-      <h4 style="margin-top:14px">Resumen estadístico </h4>
+      <h3 style="margin-top:14px">Resumen estadístico</h3>
       <ul>
         <li><strong>Total docentes:</strong> 31</li>
         <li><strong>Docentes con cuenta Scopus (verificados como "Sí"):</strong> 18</li>
@@ -596,10 +640,74 @@ if __name__ == "__main__":
         <li><strong>Máximo índice H:</strong> 5 (Vladimiro Ibáñez Quispe)</li>
       </ul>
 
+      <canvas id="scopusChart" width="700" height="200"></canvas>
+
       <p><strong>Observación:</strong> varias filas aparecen con '-' cuando no se encontró autor en Scopus o no hay datos públicos.</p>
-      <p>Si quieres, puedo también generar un archivo Excel con esta tabla y una hoja con los cálculos estadísticos.</p>
+      <p class="back"><a href="#" onclick="show('home');return false;">⬅ Volver al inicio</a></p>
     </section>
 
-  </main>
+  </div>
+
+  <script>
+    // Navegación: mostrar sección
+    function show(id){
+      document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+      const el = document.getElementById(id);
+      if(el) el.classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    // Inicial: mostrar home
+    show('home');
+
+    // Crear gráfico Scopus Sí/No y mostrar valores encima de barras
+    (function(){
+      const yes = 18;
+      const no = 13;
+      const ctx = document.getElementById('scopusChart').getContext('2d');
+      const data = {
+        labels: ['Cuenta Scopus: Sí', 'Cuenta Scopus: No'],
+        datasets: [{
+          label: 'Docentes',
+          data: [yes, no],
+          backgroundColor: ['#4da6ff','#cfefff']
+        }]
+      };
+      const config = {
+        type: 'bar',
+        data,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: true },
+            title: { display: true, text: 'Distribución de docentes según Scopus' }
+          },
+          scales: {
+            y: { beginAtZero: true, ticks: { stepSize: 1 } }
+          }
+        },
+        plugins: [{
+          id: 'showValues',
+          afterDatasetsDraw(chart) {
+            const ctx = chart.ctx;
+            chart.data.datasets.forEach((dataset, i) => {
+              const meta = chart.getDatasetMeta(i);
+              meta.data.forEach((bar, index) => {
+                const data = dataset.data[index];
+                ctx.fillStyle = '#034a7a';
+                ctx.font = '600 13px Inter, Arial';
+                const x = bar.x;
+                const y = bar.y - 8;
+                ctx.textAlign = 'center';
+                ctx.fillText(String(data), x, y);
+              });
+            });
+          }
+        }]
+      };
+      new Chart(ctx, config);
+    })();
+  </script>
 </body>
 </html>
