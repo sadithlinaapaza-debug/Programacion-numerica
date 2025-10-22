@@ -117,12 +117,14 @@
       <button onclick="show('mod7')">Módulo 7</button>
       <button onclick="show('mod8')">Módulo 8</button>
       <button onclick="show('docentes')">Docentes</button>
+      <button onclick="show('indiceh')">Índice H</button>
     </div>
 
     <!-- HOME / INSTRUCCIONES -->
     <section id="home" class="section active">
       <h2>Bienvenido/a</h2>
-      <p class="theory">Selecciona un módulo para ver la teoría, la fórmula y el código Python. Los códigos están tal cual como los entregaste; no han sido modificados. En la sección "Docentes" encontrarás la tabla completa con 31 docentes y un resumen estadístico.</p>
+      <p class="theory">Este repositorio tiene como propósito recopilar, organizar y compartir implementaciones, ejercicios y proyectos desarrollados 
+        en el curso de Programación Numérica. Aquí encontrarás soluciones a problemas matemáticos mediante métodos computacionales, aplicando principios de análisis numérico y buenas prácticas de programación..</p>
       <p>Usa los botones de arriba para navegar. Cada módulo tiene un botón para volver aquí.</p>
     </section>
 
@@ -604,7 +606,7 @@ if __name__ == "__main__":
       <table class="docentes-table" id="tabla-docentes">
         <thead>
           <tr>
-            <th>Docente (APELLIDO, Nombre)</th>
+            <th>Docente </th>
             <th>Cuenta Scopus</th>
             <th>Publicaciones</th>
             <th>Citas</th>
@@ -642,16 +644,17 @@ if __name__ == "__main__":
           <tr><td>QUISPE YAPO, Edgardo</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
           <tr><td>ROQUE CLAROS, Roberto elvis</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
           <tr><td>VARGAS VALVERDE, Confesor milan</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
-          <tr><td>TORRES CRUZ, Fredy heric</td><td>Sí</td><td>39</td><td>74</td><td>4</td></tr>
+          <tr><td>TORRES CRUZ, Fred</td><td>Sí</td><td>40</td><td>74</td><td>4</td></tr>
+          <tr><td>ROSSEL BERNEDO, Luis Alberth</td><td>No se encontró autor</td><td>-</td><td>-</td><td>-</td></tr>
         </tbody>
       </table>
 
-      <!-- Estadística rápida -->
+      <!-- Estadística  -->
       <h3 style="margin-top:14px">Resumen estadístico</h3>
       <ul>
-        <li><strong>Total docentes:</strong> 31</li>
+        <li><strong>Total docentes:</strong> 32</li>
         <li><strong>Docentes con cuenta Scopus (verificados como "Sí"):</strong> 18</li>
-        <li><strong>Docentes sin cuenta en Scopus:</strong> 13</li>
+        <li><strong>Docentes sin cuenta en Scopus o no se encontro autor:</strong> 14</li>
         <li><strong>Índice H promedio (entre los que tienen valor numérico):</strong> aprox. 2.1</li>
         <li><strong>Máximo índice H:</strong> 5 (Vladimiro Ibáñez Quispe)</li>
       </ul>
@@ -679,7 +682,7 @@ if __name__ == "__main__":
     // Crear gráfico Scopus Sí/No y mostrar valores encima de barras
     (function(){
       const yes = 18;
-      const no = 13;
+      const no = 14;
       const ctx = document.getElementById('scopusChart').getContext('2d');
       const data = {
         labels: ['Cuenta Scopus: Sí', 'Cuenta Scopus: No'],
@@ -725,5 +728,98 @@ if __name__ == "__main__":
       new Chart(ctx, config);
     })();
   </script>
+  <section id="indiceh" class="section">
+      <h2>Autores destacados — Índice H &gt; 10</h2>
+
+      <p class="theory">
+        <strong>Concepto:</strong> El <strong>índice H</strong> (h-index) mide simultáneamente la productividad y el impacto de un autor: un investigador tiene índice H = <em>h</em> si dispone de <em>h</em> trabajos que han recibido, cada uno, al menos <em>h</em> citas. A continuación se muestran autores seleccionados con índice H mayor a 10. En cada cuadro encontrarás el resumen (totales) y, bajo ese resumen, una lista de publicaciones (sin cifras de citas por publicación).
+      </p>
+
+      <!-- Autor: Hinton -->
+      <div class="author-card" id="hinton">
+        <div class="author-meta">
+          <div class="title">Hinton, Geoffrey E.</div>
+          <div>Universidad de Toronto, Canadá</div>
+          <div style="margin-top:8px; font-size:13px; color:#385a78">Scopus ID: <strong>7006699573</strong></div>
+        </div>
+
+        <div style="flex:1">
+          <div class="metrics" aria-hidden="true">
+            <div>
+              <div style="font-size:12px; color:#0b3d66">Citas totales</div>
+              <div style="font-size:18px">424.830</div>
+            </div>
+            <div>
+              <div style="font-size:12px; color:#0b3d66">Documentos</div>
+              <div style="font-size:18px">271</div>
+            </div>
+            <div>
+              <div style="font-size:12px; color:#0b3d66">Índice H</div>
+              <div style="font-size:18px">117</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px" class="pubs">
+            <strong>Publicaciones (selección):</strong>
+            <ul>
+              <li>Conferencia Nobel: Máquinas de Boltzmann</li>
+              <li>Gestión de riesgos extremos de IA en medio de un rápido progreso: la preparación requiere investigación y desarrollo técnico, así como una gobernanza adaptativa y proactiva.</li>
+              <li>Generalización robusta y eficiente en el uso de datos del aprendizaje automático autosupervisado para imágenes de diagnóstico</li>
+              <li>Cómo representar jerarquías parte-todo en una red neuronal</li>
+              <li>BITS ANALÓGICOS: Generación de datos discretos utilizando modelos de difusión con autocondicionamiento</li>
+              <li>Un marco generalista para la segmentación panóptica de imágenes y vídeos</li>
+              <li>Gradiente de escala hacia adelante con pérdidas locales</li>
+              <li>PIX2SEQ: un marco de modelado de lenguaje para la detección de objetos</li>
+              <li>Modelos lingüísticos de peso rápido de metaaprendizaje</li>
+              <li>Una interfaz de secuencia unificada para tareas de visión</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Autor: Bengio -->
+      <div class="author-card" id="bengio">
+        <div class="author-meta">
+          <div class="title">Bengio, Yoshua</div>
+          <div>Montreal Institute for Learning Algorithms, Canadá</div>
+          <div style="margin-top:8px; font-size:13px; color:#385a78">Scopus ID: <strong>7003958245</strong></div>
+        </div>
+
+        <div style="flex:1">
+          <div class="metrics" aria-hidden="true">
+            <div>
+              <div style="font-size:12px; color:#0b3d66">Citas totales</div>
+              <div style="font-size:18px">400.851</div>
+            </div>
+            <div>
+              <div style="font-size:12px; color:#0b3d66">Documentos</div>
+              <div style="font-size:18px">641</div>
+            </div>
+            <div>
+              <div style="font-size:12px; color:#0b3d66">Índice H</div>
+              <div style="font-size:18px">162</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px" class="pubs">
+            <strong>Publicaciones (selección):</strong>
+            <ul>
+              <li>Las ilusiones de la conciencia de la IA: la creencia de que la IA es consciente no está exenta de riesgos</li>
+              <li>¿Qué hace que una teoría de la conciencia no sea científica?</li>
+              <li>Aprendizaje automático causal para la genómica de células individuales</li>
+              <li>Descubrimiento causal en astrofísica: desentrañando la coevolución entre agujeros negros supermasivos y galaxias</li>
+              <li>Desaprendizaje de bajo consumo computacional mediante representaciones dispersas</li>
+              <!-- puedes agregar más títulos aquí sin la cifra de citas -->
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top:10px; font-size:13px; color:#0b3d66">
+        <strong>Nota:</strong> las cifras mostradas arriba son los totales resumidos (citas totales, número de documentos y el índice H). En la lista de publicaciones no se muestran las citas por artículo, tal como solicitaste.
+      </p>
+
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
 </body>
 </html>
