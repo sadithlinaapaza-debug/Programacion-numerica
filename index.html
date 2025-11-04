@@ -118,6 +118,8 @@
       <button onclick="show('mod8')">Módulo 8</button>
       <button onclick="show('docentes')">Docentes</button>
       <button onclick="show('indiceh')">Índice H</button>
+      <button onclick="show('gradiente')">Gradiente</button>
+      <button onclick="show('OLSyGD')">MetodoOLS y GD</button>
     </div>
 
     <!-- HOME / INSTRUCCIONES -->
@@ -825,6 +827,107 @@ if __name__ == "__main__":
       <p style="margin-top:10px; font-size:13px; color:#0b3d66">
       </p>
 
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
+  
+  <---Gradiente---->
+    <section id="gradiente" class="section">
+      <h2>Metodo de Gradiente</h2>
+      <p class="theory">El método del gradiente es una técnica matemática usada para encontrar los mínimos o máximos de una función.
+        Se basa en el gradiente, que es un vector formado por las derivadas parciales de la función y que indica la dirección y rapidez del cambio más grande de dicha función en un punto dado.
+        En el caso de una función 𝑓(𝑥), el método del descenso del gradiente busca el punto donde la función alcanza su valor
+        mínimo actualizando los valores de 𝑥 en la dirección opuesta al gradiente, mediante la ecuación:xk+1​=xk​−α∇f(xk​)</p>
+
+      <h3>Ejemplo en R </h3>
+      <pre><code class="language-R">
+        import math
+
+# MÉTODO DEL GRADIENTE 
+f <- function(x){ x^2 } 
+f_deriv <- function(x){ 2*x } 
+# Parámetros 
+x0 <- 3 
+n <- 0.01        # tasa de aprendizaje 
+max_iter <- 100 
+# Guardar el recorrido 
+x_valores <- numeric(max_iter) 
+f_valores <- numeric(max_iter) 
+# Iteraciones 
+for (i in 1:max_iter) { 
+x_nuevo <- x0 - (n * f_deriv(x0))  
+x0 <- x_nuevo 
+x_valores[i] <- x0 
+f_valores[i] <- f(x0) 
+} 
+cat("El mínimo está en x =", x0, "con f(x) =", f(x0), "\n") 
+# Dibuja la función 
+x_seq <- seq(-3, 3, 0.1) 
+plot(x_seq, f(x_seq), type = "l", col = "blue", lwd = 2, 
+main = "Método del Gradiente para f(x) = x^2", 
+xlab = "x", ylab = "f(x)") 
+# Puntos del recorrido 
+points(x_valores, f_valores, col = "red", pch = 19) 
+lines(x_valores, f_valores, col = "red", lwd = 2) 
+# Punto final (mínimo) 
+points(x0, f(x0), col = "green", pch = 19, cex = 1.5) 
+
+    </code></pre>
+      
+      <p><a class="download" href="gradiente.R" download>Descargar gradiente.R</a></p>
+      <p><a class="download" href="método de gradiente.pdf" download>Descargar método de gradiente.pdf</a></p>
+        <p class="reflection"><strong>Reflexión:</strong> —</p>
+      
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
+
+  <----comparacion de metodos-------->
+    <section id="OLSyGD" class="section">
+      <h2>Comparacion de los Metodos OLS y GD</h2>
+      <p class="theory">El método de Mínimos Cuadrados Ordinarios (OLS) y el método del Gradiente Descendente (GD) son técnicas utilizadas para ajustar modelos y estimar parámetros, especialmente en regresión.
+
+* OLS encuentra la solución de forma analítica, resolviendo directamente un sistema de ecuaciones para obtener los coeficientes que minimizan el error cuadrático. Es rápido y exacto cuando los datos son pocos o el sistema no es muy grande.
+
+* GD, en cambio, es un método iterativo que ajusta los parámetros paso a paso siguiendo la dirección del gradiente hasta llegar al mínimo. Es más lento, pero resulta útil cuando hay grandes volúmenes de datos o muchas variables, donde OLS sería costoso o imposible de calcular directamente.:</p>
+
+      -------------------<h3>Ejemplo en R </h3>
+      <pre><code class="language-R">
+        import math
+
+# MÉTODO DEL GRADIENTE 
+f <- function(x){ x^2 } 
+f_deriv <- function(x){ 2*x } 
+# Parámetros 
+x0 <- 3 
+n <- 0.01        # tasa de aprendizaje 
+max_iter <- 100 
+# Guardar el recorrido 
+x_valores <- numeric(max_iter) 
+f_valores <- numeric(max_iter) 
+# Iteraciones 
+for (i in 1:max_iter) { 
+x_nuevo <- x0 - (n * f_deriv(x0))  
+x0 <- x_nuevo 
+x_valores[i] <- x0 
+f_valores[i] <- f(x0) 
+} 
+cat("El mínimo está en x =", x0, "con f(x) =", f(x0), "\n") 
+# Dibuja la función 
+x_seq <- seq(-3, 3, 0.1) 
+plot(x_seq, f(x_seq), type = "l", col = "blue", lwd = 2, 
+main = "Método del Gradiente para f(x) = x^2", 
+xlab = "x", ylab = "f(x)") 
+# Puntos del recorrido 
+points(x_valores, f_valores, col = "red", pch = 19) 
+lines(x_valores, f_valores, col = "red", lwd = 2) 
+# Punto final (mínimo) 
+points(x0, f(x0), col = "green", pch = 19, cex = 1.5) 
+
+    </code></pre>
+      
+      <p><a class="download" href="gradiente.R" download>Descargar gradiente.R</a></p>
+      <p><a class="download" href="método de gradiente.pdf" download>Descargar método de gradiente.pdf</a></p>
+        <p class="reflection"><strong>Reflexión:</strong> —</p>
+      
       <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
     </section>
 </body>
