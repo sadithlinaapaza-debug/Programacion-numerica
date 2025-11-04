@@ -119,7 +119,8 @@
       <button onclick="show('docentes')">Docentes</button>
       <button onclick="show('indiceh')">Índice H</button>
       <button onclick="show('gradiente')">Gradiente</button>
-      <button onclick="show('OLSyGD')">MetodoOLS y GD</button>
+      <button onclick="show('OLSyGD')">Metodo OLS y GD</button>
+      <button onclick="show('Supervivencia')">Supervivencia</button>
     </div>
 
     <!-- HOME / INSTRUCCIONES -->
@@ -830,13 +831,14 @@ if __name__ == "__main__":
       <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
     </section>
   
-  <---Gradiente---->
+  <!--Gradiente-->
     <section id="gradiente" class="section">
       <h2>Metodo de Gradiente</h2>
       <p class="theory">El método del gradiente es una técnica matemática usada para encontrar los mínimos o máximos de una función.
         Se basa en el gradiente, que es un vector formado por las derivadas parciales de la función y que indica la dirección y rapidez del cambio más grande de dicha función en un punto dado.
         En el caso de una función 𝑓(𝑥), el método del descenso del gradiente busca el punto donde la función alcanza su valor
-        mínimo actualizando los valores de 𝑥 en la dirección opuesta al gradiente, mediante la ecuación:xk+1​=xk​−α∇f(xk​)</p>
+        mínimo actualizando los valores de 𝑥 en la dirección opuesta al gradiente, mediante la ecuación:</p>
+       <p><strong>Fórmula</strong>: \( xk + 1 ​= xk ​− α∇ f(xk​) \)</p>
 
       <h3>Ejemplo en R </h3>
       <pre><code class="language-R">
@@ -880,52 +882,233 @@ points(x0, f(x0), col = "green", pch = 19, cex = 1.5)
       <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
     </section>
 
-  <----comparacion de metodos-------->
+  <!--comparacion de metodos-->
     <section id="OLSyGD" class="section">
       <h2>Comparacion de los Metodos OLS y GD</h2>
-      <p class="theory">El método de Mínimos Cuadrados Ordinarios (OLS) y el método del Gradiente Descendente (GD) son técnicas utilizadas para ajustar modelos y estimar parámetros, especialmente en regresión.
+      <p class="theory">El método de Mínimos Cuadrados Ordinarios (OLS) y el método del Gradiente Descendente (GD) son técnicas utilizadas para ajustar modelos y estimar parámetros, especialmente en regresión.</p>
 
-* OLS encuentra la solución de forma analítica, resolviendo directamente un sistema de ecuaciones para obtener los coeficientes que minimizan el error cuadrático. Es rápido y exacto cuando los datos son pocos o el sistema no es muy grande.
+<p class="theory">* OLS encuentra la solución de forma analítica, resolviendo directamente un sistema de ecuaciones para obtener los coeficientes que minimizan el error cuadrático. Es rápido y exacto cuando los datos son pocos o el sistema no es muy grande.</p>
 
-* GD, en cambio, es un método iterativo que ajusta los parámetros paso a paso siguiendo la dirección del gradiente hasta llegar al mínimo. Es más lento, pero resulta útil cuando hay grandes volúmenes de datos o muchas variables, donde OLS sería costoso o imposible de calcular directamente.:</p>
+<p class="theory">* GD, en cambio, es un método iterativo que ajusta los parámetros paso a paso siguiendo la dirección del gradiente hasta llegar al mínimo. Es más lento, pero resulta útil cuando hay grandes volúmenes de datos o muchas variables, donde OLS sería costoso o imposible de calcular directamente.:</p>
 
-      -------------------<h3>Ejemplo en R </h3>
+      <h3>Ejemplo en R </h3>
       <pre><code class="language-R">
-        import math
 
-# MÉTODO DEL GRADIENTE 
-f <- function(x){ x^2 } 
-f_deriv <- function(x){ 2*x } 
-# Parámetros 
-x0 <- 3 
-n <- 0.01        # tasa de aprendizaje 
-max_iter <- 100 
-# Guardar el recorrido 
-x_valores <- numeric(max_iter) 
-f_valores <- numeric(max_iter) 
-# Iteraciones 
-for (i in 1:max_iter) { 
-x_nuevo <- x0 - (n * f_deriv(x0))  
-x0 <- x_nuevo 
-x_valores[i] <- x0 
-f_valores[i] <- f(x0) 
-} 
-cat("El mínimo está en x =", x0, "con f(x) =", f(x0), "\n") 
-# Dibuja la función 
-x_seq <- seq(-3, 3, 0.1) 
-plot(x_seq, f(x_seq), type = "l", col = "blue", lwd = 2, 
-main = "Método del Gradiente para f(x) = x^2", 
-xlab = "x", ylab = "f(x)") 
-# Puntos del recorrido 
-points(x_valores, f_valores, col = "red", pch = 19) 
-lines(x_valores, f_valores, col = "red", lwd = 2) 
-# Punto final (mínimo) 
-points(x0, f(x0), col = "green", pch = 19, cex = 1.5) 
+# REGRESIÓN LINEAL: 
+
+set.seed(123)  # Para reproducibilidad
+
+n <- 1e6
+x <- runif(n, 0, 10)
+beta_0 <- 5
+beta_1 <- 3
+epsilon <- rnorm(n, mean = 0, sd = 2)
+y <- beta_0 + beta_1 * x + epsilon
+
+# ------------------------------------------------------
+# MÉTODO 1: OLS (MÍNIMOS CUADRADOS ORDINARIOS)
+# ------------------------------------------------------
+cat("\n=== MÉTODO OLS ===\n")
+tiempo_ols <- system.time({
+  modelo_ols <- lm(y ~ x)
+})
+summary(modelo_ols)
+
+cat("\n--- Resultados OLS ---\n")
+cat("Beta_0 estimado:", coef(modelo_ols)[1], "\n")
+cat("Beta_1 estimado:", coef(modelo_ols)[2], "\n")
+cat("Tiempo de ejecución OLS (segundos):\n")
+print(tiempo_ols)
+
+# ------------------------------------------------------
+# MÉTODO 2: DESCENSO DEL GRADIENTE
+# ------------------------------------------------------
+cat("\n=== MÉTODO GD ===\n")
+
+# Hiperparámetros
+alpha <- 0.000001     # tasa de aprendizaje
+iteraciones <- 1000   # número de iteraciones
+
+# Inicialización
+b0 <- 0
+b1 <- 0
+
+tiempo_gd <- system.time({
+  for (i in 1:iteraciones) {
+    y_pred <- b0 + b1 * x
+    grad_b0 <- (-2/n) * sum(y - y_pred)
+    grad_b1 <- (-2/n) * sum(x * (y - y_pred))
+    b0 <- b0 - alpha * grad_b0
+    b1 <- b1 - alpha * grad_b1
+  }
+})
+
+cat("\n--- Resultados GD ---\n")
+cat("Beta_0 estimado:", b0, "\n")
+cat("Beta_1 estimado:", b1, "\n")
+cat("Tiempo de ejecución GD (segundos):\n")
+print(tiempo_gd)
 
     </code></pre>
       
-      <p><a class="download" href="gradiente.R" download>Descargar gradiente.R</a></p>
-      <p><a class="download" href="método de gradiente.pdf" download>Descargar método de gradiente.pdf</a></p>
+      <p><a class="download" href="OLS,.R" download>Descargar OLS,.R</a></p>
+      <p><a class="download" href="Método OLS y GD.pdf" download>Descargar Método OLS y GD.pdf</a></p>
+        <p class="reflection"><strong>Reflexión:</strong> —</p>
+      
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
+      
+       <!--Supervivencia-->
+    <section id="Supervivencia" class="section">
+      <h2>Juego de Supervivencia</h2>
+       <p class="theory">
+    Durante una actividad grupal dirigida por el ingeniero, se realizó un juego con el objetivo de aplicar el razonamiento lógico 
+    y la simulación en programación, utilizando posteriormente el lenguaje R para modelar la situación.</p>
+
+  <h3> Objetivo del juego</h3>
+  <p>
+    El propósito del juego era que todos los integrantes del grupo (9 en total) lograran obtener al menos un chupetín cada uno.
+    Para ello, se debían realizar una serie de intercambios estratégicos de caramelos, siguiendo ciertas reglas previamente establecidas.
+  </p>
+
+  <h3>Desarrollo de la actividad</h3>
+  <p>
+    Al inicio, el ingeniero entregó dos caramelos aleatorios a cada participante, sumando 18 caramelos en total para el grupo.
+    Había tres tipos de caramelos, representados por las letras A, B y C (A = caramelo amarillo, B = caramelo blanco, C = caramelo redondo).
+  </p>
+  <p>
+    Los integrantes debian juntar sus caramelos entre sí y realizar intercambios con el “Ingeniero” para llegar a la meta, 
+    siguiendo las reglas oficiales del juego.
+  </p>
+
+  <h3>Reglas del juego</h3>
+
+  <h4>🔹 Regla 1:</h4>
+  <p>
+    Por cada combinación de <strong>A + B + C</strong>, el grupo podía canjear <strong>1 chupetín</strong>.
+  </p>
+
+  <h4>🔹 Regla 2:</h4>
+  <p>
+    Si el grupo reunía 6 caramelos compuestos por <strong>2A + 2B + 2C</strong>, podían canjearlos por:
+    <br>→ <strong>2 chupetines + 1 caramelo aleatorio </strong>.
+  </p>
+
+  <h4>🔹 Regla 3:</h4>
+  <p> Se podía intercambiar <strong>1 chupetín</strong> por <strong>3 caramelos aleatorios</strong>.
+  </p>
+
+  <h3>Estrategia del grupo</h3>
+  <p>
+    El grupo trabajó en conjunto, combinando sus caramelos y aplicando las reglas de forma estratégica.
+    Primero, se concentraron en aplicar la Regla 2 para conseguir varios chupetines de forma rápida.
+  </p>
+  <p>
+    Cuando lograron 4 chupetines, decidieron arriesgarse aplicando la Regla 3, devolviendo algunos chupetines 
+    para obtener más caramelos y continuar los intercambios.
+  </p>
+  <p>
+    Finalmente, al tener 8 chupetines y 3 caramelos diferentes, aplicaron la Regla 1 para completar la meta, consiguiendo los 9 chupetines necesarios 
+    para que cada integrante obtuviera uno.
+  </p>
+
+  <h3>Aplicación en R</h3>
+  <p>
+    Con base en esta dinámica, se desarrolló un código en R que simula todo el proceso de intercambio, siguiendo las reglas descritas.
+    El programa comienza con 18 caramelos aleatorios y ejecuta iteraciones hasta que el grupo alcanza los 9 chupetines, 
+    aplicando las reglas en el orden lógico:
+  </p>
+
+  <ol>
+    <li>Regla 2 (intercambio principal)</li>
+    <li>Regla 3 (intercambio estratégico)</li>
+    <li>Regla 1 (final de ajuste)</li>
+  </ol>
+
+  <p>El objetivo del código es encontrar la solución en el menor número de iteraciones posibles, 
+    reflejando el mismo razonamiento colectivo que se utilizó en la dinámica real. </p>
+
+      <h3>Codigo en R </h3>
+      <pre><code class="language-R">
+        tipos <- c("A", "B", "C") 
+caramelos_aleatorios <- function(n) sample(tipos, n, replace = TRUE) 
+set.seed(123)   
+caramelos_grupo <- caramelos_aleatorios(9 * 2)   
+chupetines <- 0 
+objetivo <- 9   
+cat(" Caramelos iniciales:", paste(caramelos_grupo, collapse = " "), "\n") 
+# Regla 2: 2A + 2B + 2C → 2 chupetines + 1 caramelo aleatorio 
+regla2 <- function(caramelos, chupetines) { 
+aplicado <- FALSE 
+while (sum(caramelos == "A") >= 2 && 
+sum(caramelos == "B") >= 2 && 
+sum(caramelos == "C") >= 2) { 
+for (x in c("A", "B", "C")) { 
+caramelos <- caramelos[-which(caramelos == x)[1:2]] 
+} 
+chupetines <- chupetines + 2 
+caramelos <- c(caramelos, sample(tipos, 1)) 
+aplicado <- TRUE 
+cat("Regla 2 aplicada → +2 chupetines, +1 caramelo aleatorio\n") 
+} 
+return(list(caramelos, chupetines, aplicado)) 
+} 
+# Regla 3: 1 chupetín → 3 caramelos aleatorios 
+regla3 <- function(caramelos, chupetines) { 
+if (chupetines >= 2) {  # solo si tienen al menos 2 chupetines 
+chupetines <- chupetines - 1 
+nuevos <- sample(tipos, 3, replace = TRUE) 
+caramelos <- c(caramelos, nuevos) 
+cat("Regla 3 aplicada → 1 chupetín cambiado por:", paste(nuevos, collapse = " "), 
+"\n") 
+} 
+return(list(caramelos, chupetines)) 
+} 
+# Regla 1: A + B + C → 1 chupetín 
+regla1 <- function(caramelos, chupetines) { 
+aplicado <- FALSE 
+while (all(c("A", "B", "C") %in% caramelos)) { 
+caramelos <- caramelos[-match(c("A", "B", "C"), caramelos)] 
+chupetines <- chupetines + 1 
+aplicado <- TRUE 
+cat("Regla 1 aplicada → +1 chupetín (combinación A+B+C)\n") 
+} 
+return(list(caramelos, chupetines, aplicado)) 
+} 
+iter <- 0 
+repeat { 
+iter <- iter + 1 
+cat("\nIteración", iter, "\n") 
+cat("Caramelos:", paste(caramelos_grupo, collapse = " "),  
+"- Chupetines:", chupetines, "\n") 
+res2 <- regla2(caramelos_grupo, chupetines) 
+caramelos_grupo <- res2[[1]] 
+chupetines <- res2[[2]] 
+if (chupetines >= 2 && chupetines < objetivo) { 
+res3 <- regla3(caramelos_grupo, chupetines) 
+caramelos_grupo <- res3[[1]] 
+chupetines <- res3[[2]] 
+} 
+if (chupetines >= 8 && chupetines < objetivo) { 
+res1 <- regla1(caramelos_grupo, chupetines) 
+caramelos_grupo <- res1[[1]] 
+chupetines <- res1[[2]] 
+} 
+# Mostrar progreso 
+cat("Estado tras la iteración:", chupetines, "chupetines,", 
+length(caramelos_grupo), "caramelos.\n") 
+if (chupetines >= objetivo) { 
+cat("\nEl grupo logró obtener los 9 chupetines en", iter, "iteraciones\n") 
+break 
+} 
+if (iter > 200) { 
+cat("\nNo se logró el objetivo después de 200 iteraciones.\n") 
+break 
+} 
+}
+    </code></pre>
+      
+      <p><a class="download" href="Supervivencia.R" download>Descargar Supervivencia.R</a></p>
         <p class="reflection"><strong>Reflexión:</strong> —</p>
       
       <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
