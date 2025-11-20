@@ -1342,6 +1342,18 @@ break
 
 <section id="algoritmo" class="section">
 
+<style>
+/* Estilos locales para la sección: tablar con marco 'marco', y mejor presentación de ecuaciones */
+#resumen-algoritmo-bis { font-family: Arial, sans-serif; line-height: 1.6; padding: 12px; }
+#resumen-algoritmo-bis h1, #resumen-algoritmo-bis h2, #resumen-algoritmo-bis h3 { color:#003366; margin-top: 1em; }
+#resumen-algoritmo-bis table { border-collapse: collapse; width: 100%; margin: 12px 0; box-shadow: 0 0 0 2px rgba(0,0,0,0.08); }
+#resumen-algoritmo-bis th, #resumen-algoritmo-bis td { border: 2px solid #333; padding: 8px 10px; text-align: left; }
+#resumen-algoritmo-bis th { background:#f0f4f8; }
+.math-display { display:block; margin: 14px 0; font-size: 1.05em; text-align:center; }
+/* Mejora visual para ecuaciones cuando MathJax no cargue aún */
+.math-fallback { font-family: "Times New Roman", Times, serif; font-style: italic; background:#fafafa; padding:6px; border-left:4px solid #ddd; }
+</style>
+
 <h1>Optimal single-path information propagation in gradient-based algorithms</h1>
 
 <h2>Resumen</h2>
@@ -1362,7 +1374,7 @@ y reactivo, evitando el problema de <i>count-to-infinity</i>.
 
 <h3>2.1 Field calculus</h3>
 <p>
-Es un lenguaje formal para modelar computación espacial distribuida. Permite expresar gradientes, difusión,
+Es un lenguaje formal para modelar cómputo espacial distribuido. Permite expresar gradientes, difusión,
 acumulación y comportamientos colectivos mediante evaluaciones locales asincrónicas.
 </p>
 
@@ -1382,7 +1394,7 @@ El artículo utiliza funciones como <code>rep</code>, <code>nbr</code>, <code>nb
 
 <h3>2.4 Implementaciones</h3>
 
-<table>
+<table class="table-frame">
 <tr><th>Algoritmo</th><th>Fortalezas</th><th>Debilidades</th></tr>
 <tr><td>Classic</td><td>Simple y estable</td><td>Lento ante cambios</td></tr>
 <tr><td>CRF</td><td>Mejora velocidad de subida</td><td>Sensible al ruido</td></tr>
@@ -1399,17 +1411,22 @@ enlaces cortos o retrasados.
 
 <p>La velocidad promedio de propagación de información se estima como:</p>
 
-<p>
-$$ v_{avg}=\frac{2}{3}\cdot\frac{n}{n+1}\cdot\frac{R}{Q}\cdot(1+\hat{\sigma}^2(P))\cdot\left(\frac{28}{27}+\frac{16}{27}\hat{\sigma}^2(I)\right)+\frac{v}{2} $$
-</p>
+<!-- Ecuación en display MathJax -->
+<div class="math-display">
+$$
+v_{avg}=\frac{2}{3}\cdot\frac{n}{n+1}\cdot\frac{R}{Q}\cdot\big(1+\hat{\sigma}^2(P)\big)\cdot\left(\frac{28}{27}+\frac{16}{27}\hat{\sigma}^2(I)\right)+\frac{v}{2}
+$$
+</div>
 
 <h3>3.2 Fórmula del gradiente BIS</h3>
 
 <p>El cálculo clave del BIS para cada vecino es:</p>
 
-<p>
-$$ G(\delta,\delta')=\max \left( G(\delta') + w(\delta,\delta'),\; v\cdot L(\delta,\delta') - r \right) $$
-</p>
+<div class="math-display">
+$$
+G(\delta,\delta')=\max\!\big( \; G(\delta') + w(\delta,\delta'),\; v\cdot L(\delta,\delta') - r \; \big)
+$$
+</div>
 
 <p>Luego se selecciona el valor mínimo entre todos los vecinos.</p>
 
@@ -1420,7 +1437,7 @@ $$ G(\delta,\delta')=\max \left( G(\delta') + w(\delta,\delta'),\; v\cdot L(\del
 <p>La velocidad mínima de reacción del gradiente queda garantizada: <strong>InfoSpeed ≥ v</strong>.</p>
 
 <h3>Teorema 3 – Optimality</h3>
-<p>BIS es óptimo entre todos los algoritmos de propagación single-path.</p>
+<p>BIS es óptimo entre todos los algoritmos de propagación <i>single-path</i>.</p>
 
 <h2>4. Implementación y usos</h2>
 
@@ -1470,6 +1487,25 @@ El algoritmo BIS proporciona:
 </ul>
 BIS representa un avance sobre los gradientes existentes y propone un nuevo estándar para algoritmos de coordinación espacial.
 </p>
+
+<!-- Carga condicional de MathJax: solo si no existe -->
+<script>
+(function(){
+  if (typeof window.MathJax === 'undefined') {
+    window.MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+      options: { renderActions: { find: [10] } }
+    };
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+    s.async = true;
+    document.head.appendChild(s);
+  } else if (window.MathJax && window.MathJax.typesetPromise) {
+    /* Si MathJax ya está presente, forzamos re-renderizado de las nuevas ecuaciones */
+    window.MathJax.typesetPromise && window.MathJax.typesetPromise();
+  }
+})();
+</script>
 
 </section>
 
