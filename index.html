@@ -1117,7 +1117,6 @@ break
       <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
     </section>
     
-<!-- Resumen HTML (Opción D) - Comparación Moore–Penrose vs Gradient Descent -->
   <section id="comparacion" class="section">
   <!-- MathJax config (required for LaTeX rendering) -->
   <script>
@@ -1130,7 +1129,6 @@ break
 
   <h2>Comparing the Moore–Penrose Pseudoinverse and Gradient Descent — Resumen Ejecutivo</h2>
 
-  <!-- 1. Introducción -->
   <h3>1. Introducción</h3>
   <p class="theory">
     El estudio compara dos estrategias para resolver regresión lineal: la solución directa mediante la pseudoinversa de Moore–Penrose
@@ -1148,7 +1146,6 @@ break
     \[ S(\beta) = \|X\beta - y\|^2 \]
   </div>
 
-  <!-- 2. Pseudoinversa -->
   <h3>2. Solución mediante la Pseudoinversa de Moore–Penrose</h3>
   <p class="theory">
     Si \(X\) tiene rango completo, las ecuaciones normales son:
@@ -1165,7 +1162,6 @@ break
     \(\mathcal{O}(n d^2 + d^3)\).
   </p>
 
-  <!-- 3. Descenso por gradiente -->
   <h3>3. Solución mediante Descenso por Gradiente</h3>
   <p class="theory">
     Descenso por gradiente (batch) con actualización:
@@ -1182,7 +1178,6 @@ break
     Coste por iteración: \(\mathcal{O}(n d)\). Convergencia sensible a la tasa de aprendizaje \(\alpha\) y al condicionamiento de \(X\).
   </p>
 
-  <!-- 4. Metodología -->
   <h3>4. Metodología Experimental</h3>
   <p class="theory">
     Experimentos con datos sintéticos (controlando espectro singular y condición) y conjuntos reales (California Housing, UCI Diabetes).
@@ -1196,7 +1191,6 @@ break
     <li>Número de iteraciones (solo GD).</li>
   </ul>
 
-  <!-- 5. Resultados: tablas con marco azul suave -->
   <h3>5. Analysis of Results</h3>
 
   <h4>5.1 Synthetic Data — Extracto de resultados</h4>
@@ -1257,7 +1251,6 @@ break
     </tbody>
   </table>
 
-  <!-- Key findings -->
   <h4>5.4 Observaciones clave y guía práctica</h4>
   <ul>
     <li><strong>Pseudoinverse (Moore–Penrose):</strong> solución directa y exacta; consistentemente baja MSE; rápida para n ≤ 5k, d ≤ 50 en los experimentos.</li>
@@ -1267,7 +1260,6 @@ break
     <li><strong>Estrategia híbrida:</strong> usar SVD / PCA o solución directa sobre submuestras para warm-start de GD en el conjunto completo.</li>
   </ul>
 
-  <!-- Comparative summary table -->
   <h4>Comparative summary</h4>
   <table class="table-bordered-blue compare-table">
     <thead>
@@ -1281,7 +1273,6 @@ break
     </tbody>
   </table>
 
-  <!-- Conclusion -->
   <h3>6. Conclusiones</h3>
   <p class="theory">
     En los experimentos presentados, la pseudoinversa fue la opción preferida para conjuntos de tamaño pequeño-moderado y
@@ -1291,6 +1282,7 @@ break
   </p>
 
    <p class="reflection"><strong>Reflexión:</strong> —</p>
+    
   <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
 </section>
 
@@ -1483,10 +1475,12 @@ Mejora la agregación distribuida usando múltiples rutas.
 <h2>6. Conclusion</h2>
 <p>
 BIS proporciona una alta precisión en la estimación de gradientes, una respuesta eficiente ante cambios en la red, mayor estabilidad operativa y una suavidad mejorada cuando se integra
-  con FLEX. En conjunto, estas características consolidan a BIS como un avance significativo dentro del campo de la computación distribuida.
-</p>
-
-<!-- Carga de MathJax -->
+  con FLEX. En conjunto, estas características consolidan a BIS como un avance significativo dentro del campo de la computación distribuida. </p>
+  
+<p class="reflection"><strong>Reflexión:</strong> —</p>
+    
+  <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+  
 <script>
 if (!window.MathJax) {
   var mj = document.createElement("script");
@@ -1495,9 +1489,6 @@ if (!window.MathJax) {
   document.head.appendChild(mj);
 }
 </script>
-  <p class="reflection"><strong>Reflexión:</strong> —</p>
-      
-      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
 
 </section>
 
