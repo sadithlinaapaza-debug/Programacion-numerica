@@ -1120,37 +1120,119 @@ break
   <section id="comparacion" class="section">
     <h2>Comparing the Moore–Penrose Pseudoinverse and Gradient Descent for Solving Linear Regression Problems</h2>
 
-    <p class="theory"><em>Resumen:</em> El artículo compara la pseudoinversa de Moore–Penrose y el descenso por gradiente para resolver problemas de regresión lineal, evaluando eficiencia, estabilidad y precisión ante distintos tamaños de datos y niveles de condicionamiento.</p>
+    <p>
+        El artículo presenta un análisis exhaustivo de dos métodos fundamentales para resolver problemas de regresión lineal:
+        la pseudoinversa de Moore–Penrose y el descenso por gradiente. Ambos enfoques permiten estimar los parámetros del
+        modelo lineal, pero lo hacen desde perspectivas muy diferentes: uno mediante una solución directa y exacta, y el otro
+        mediante un proceso iterativo.
+    </p>
 
     <h3>1. Introducción</h3>
-    <p class="theory">La regresión lineal busca estimar la relación entre variables mediante el modelo:</p>
-    <p class="equation">y = Xβ + ε</p>
-    <p class="theory">donde X es la matriz de características, β los parámetros y ε el error. El objetivo es minimizar la función de costo:</p>
-    <p class="equation">S(β) = ||Xβ - y||²</p>
+
+    <p>El modelo lineal se expresa como:</p>
+
+    <div class="equation">
+        <span class="math">y = Xβ + ε</span>
+    </div>
+
+    <p>El objetivo es minimizar la función de error:</p>
+
+    <div class="equation">
+        <span class="math">S(β) = ||Xβ - y||^2</span>
+    </div>
 
     <h3>2. Solución mediante la Pseudoinversa de Moore–Penrose</h3>
-    <p class="theory">Cuando la matriz tiene buen rango, la solución proviene de las ecuaciones normales:</p>
-    <p class="equation">Xᵀ X β̂ = Xᵀ y</p>
-    <p class="theory">La solución es β̂ = (XᵀX)⁻¹ Xᵀ y. Si la matriz está mal condicionada, se usa la pseudoinversa X⁺ obtenida por SVD, garantizando estabilidad numérica.</p>
-    <p class="theory">Costo computacional: O(n d² + d³).</p>
+
+    <p>Las ecuaciones normales son:</p>
+
+    <div class="equation">
+        <span class="math">XᵀXβ̂ = Xᵀy</span>
+    </div>
+
+    <p>Que llevan a la solución:</p>
+
+    <div class="equation">
+        <span class="math">β̂ₚᵢₙᵥ = (XᵀX)⁻¹Xᵀy</span>
+    </div>
+
+    <p>El costo computacional típico es:</p>
+
+    <div class="equation">
+        <span class="math">O(nd² + d³)</span>
+    </div>
 
     <h3>3. Solución mediante Descenso por Gradiente</h3>
-    <p class="theory">El descenso por gradiente actualiza los parámetros iterativamente:</p>
-    <p class="equation">β(t+1) = β(t) – α ∇S(β(t))</p>
-    <p class="equation">∇S(β) = 2 Xᵀ (Xβ – y)</p>
-    <p class="theory">Costo por iteración: O(n d). Requiere una tasa de aprendizaje adecuada.</p>
 
-    <h3>4. Metodología de los Experimentos</h3>
-    <p class="theory">Se usaron datos sintéticos y reales (California Housing, UCI Diabetes). Se compararon tiempo de ejecución, MSE y número de iteraciones.</p>
+    <p>La regla de actualización es:</p>
+
+    <div class="equation">
+        <span class="math">βₜ₊₁ = βₜ - α ∇S(βₜ)</span>
+    </div>
+
+    <p>El gradiente:</p>
+
+    <div class="equation">
+        <span class="math">∇S(β) = 2Xᵀ(Xβ - y)</span>
+    </div>
+
+    <p>Actualización final:</p>
+
+    <div class="equation">
+        <span class="math">βₜ₊₁ = βₜ - 2αXᵀ(Xβₜ - y)</span>
+    </div>
+
+    <p>La complejidad por iteración es:</p>
+
+    <div class="equation">
+        <span class="math">O(nd)</span>
+    </div>
+
+    <h3>4. Metodología Experimental</h3>
+
+    <p>
+        Se usaron datos sintéticos con diferentes grados de condicionamiento, así como California Housing y UCI Diabetes.
+        Las métricas evaluadas fueron:
+    </p>
+
+    <ul>
+        <li>Tiempo de ejecución</li>
+        <li>Error cuadrático medio (MSE)</li>
+        <li>Número de iteraciones (solo para GD)</li>
+    </ul>
 
     <h3>5. Resultados Principales</h3>
-    <p class="theory">La pseudoinversa es más rápida y estable en matrices de tamaño pequeño y mediano. El descenso por gradiente es sensible al condicionamiento y requiere muchas iteraciones si los datos no están normalizados.</p>
+
+    <p>
+        La pseudoinversa superó al descenso por gradiente en tiempo para tamaños pequeños y medianos. Ambos métodos fueron
+        precisos con matrices bien condicionadas, pero el descenso por gradiente falló o se volvió muy lento en casos de alto
+        mal condicionamiento.
+    </p>
 
     <h3>6. Conclusiones</h3>
-    <p class="theory">La pseudoinversa ofrece una solución exacta y robusta, adecuada para conjuntos pequeños/medianos. El descenso por gradiente escala mejor para grandes volúmenes de datos, pero depende de la normalización y de elegir bien la tasa de aprendizaje.</p>
 
-    <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    <p>
+        La pseudoinversa es ideal para tamaños pequeños o moderados, mientras que el descenso por gradiente escala mejor a
+        grandes volúmenes de datos. El condicionamiento de la matriz y la tasa de aprendizaje determinan el rendimiento del
+        descenso por gradiente.
+    </p>
 </section>
+
+<!-- Estilos sugeridos para "Opción B" -->
+<style>
+    .equation {
+        text-align: center;
+        margin: 18px 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+    .math {
+        padding: 6px 12px;
+        display: inline-block;
+        border-radius: 6px;
+        background: #f0f0f0;
+        font-family: "Times New Roman", serif;
+    }
+</style>
 
 </body>
 </html>
