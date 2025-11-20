@@ -122,6 +122,7 @@
       <button onclick="show('OLSyGD')">Metodo OLS y GD</button>
       <button onclick="show('comparacion')">comparacion</button>
       <button onclick="show('Supervivencia')">Supervivencia</button>
+      <button onclick="show('algoritmo')">Resumen del Articulo</button>
     </div>
 
     <!-- HOME / INSTRUCCIONES -->
@@ -1339,6 +1340,138 @@ break
   #resumen-comparacion-mathjax .tiny td { font-size:0.85rem; padding:6px; }
 </style>
 
+<section id="algoritmo" class="section">
+
+<h1>Optimal single-path information propagation in gradient-based algorithms</h1>
+
+<h2>Resumen</h2>
+<p>
+Este artículo presenta el algoritmo <strong>BIS (Bounded Information Speed)</strong>, una mejora de los gradientes clásicos
+usados en computación distribuida. BIS controla la velocidad mínima de propagación de información, logrando respuestas
+más rápidas y precisas en redes dinámicas como IoT, CPS y sistemas pervasivos.
+</p>
+
+<h2>1. Introduction</h2>
+<p>
+Los gradientes son fundamentales para coordinar dispositivos distribuidos, pero los algoritmos clásicos fallan cuando
+hay movilidad, ruido y cambios rápidos. BIS propone usar información temporal para obtener un comportamiento más suave
+y reactivo, evitando el problema de <i>count-to-infinity</i>.
+</p>
+
+<h2>2. Background and related work</h2>
+
+<h3>2.1 Field calculus</h3>
+<p>
+Es un lenguaje formal para modelar computación espacial distribuida. Permite expresar gradientes, difusión,
+acumulación y comportamientos colectivos mediante evaluaciones locales asincrónicas.
+</p>
+
+<h3>2.2 Built-in functions</h3>
+<p>
+El artículo utiliza funciones como <code>rep</code>, <code>nbr</code>, <code>nbrRange</code>, 
+<code>nbrLag</code>, <code>minHood</code> y <code>getDeltaTime</code> para construir algoritmos robustos.
+</p>
+
+<h3>2.3 Gradient-based approaches</h3>
+<ul>
+<li>Broadcast distribuido</li>
+<li>Sensing cooperativo</li>
+<li>Formación de estructuras espaciales</li>
+<li>Detección anticipada de eventos</li>
+</ul>
+
+<h3>2.4 Implementaciones</h3>
+
+<table>
+<tr><th>Algoritmo</th><th>Fortalezas</th><th>Debilidades</th></tr>
+<tr><td>Classic</td><td>Simple y estable</td><td>Lento ante cambios</td></tr>
+<tr><td>CRF</td><td>Mejora velocidad de subida</td><td>Sensible al ruido</td></tr>
+<tr><td>FLEX</td><td>Control de suavidad</td><td>Distorsión según ajuste</td></tr>
+</table>
+
+<h2>3. BIS Gradient</h2>
+<p>
+BIS impone una velocidad mínima de propagación, asegurando que el gradiente se actualice incluso cuando la red presenta
+enlaces cortos o retrasados.
+</p>
+
+<h3>3.1 Information speed</h3>
+
+<p>La velocidad promedio de propagación de información se estima como:</p>
+
+<p>
+$$ v_{avg}=\frac{2}{3}\cdot\frac{n}{n+1}\cdot\frac{R}{Q}\cdot(1+\hat{\sigma}^2(P))\cdot\left(\frac{28}{27}+\frac{16}{27}\hat{\sigma}^2(I)\right)+\frac{v}{2} $$
+</p>
+
+<h3>3.2 Fórmula del gradiente BIS</h3>
+
+<p>El cálculo clave del BIS para cada vecino es:</p>
+
+<p>
+$$ G(\delta,\delta')=\max \left( G(\delta') + w(\delta,\delta'),\; v\cdot L(\delta,\delta') - r \right) $$
+</p>
+
+<p>Luego se selecciona el valor mínimo entre todos los vecinos.</p>
+
+<h3>Teorema 1 – Degenerate BIS</h3>
+<p>Si <strong>v = 0</strong>, BIS se comporta exactamente como el gradiente clásico.</p>
+
+<h3>Teorema 2 – Performance Bound</h3>
+<p>La velocidad mínima de reacción del gradiente queda garantizada: <strong>InfoSpeed ≥ v</strong>.</p>
+
+<h3>Teorema 3 – Optimality</h3>
+<p>BIS es óptimo entre todos los algoritmos de propagación single-path.</p>
+
+<h2>4. Implementación y usos</h2>
+
+<h3>4.1 Implementación en Field Calculus</h3>
+
+<p>Se presenta el código ejecutable del algoritmo BIS y una versión BISflex que incorpora suavizado tipo FLEX.</p>
+
+<h3>4.2 Channel communication</h3>
+<p>
+BIS mejora la creación y mantenimiento de canales espaciales (rectangulares o elípticos), útiles para enviar datos a través
+de la red sin usar broadcast global.
+</p>
+
+<h3>4.3 Data collection</h3>
+<p>
+Combinado con técnicas multipath, BIS mejora la recolección distribuida de datos, reduciendo error y mejorando estabilidad.
+</p>
+
+<h2>5. Analysis and verification</h2>
+
+<h3>5.1 Indicadores de rendimiento</h3>
+<ul>
+<li>Precisión</li>
+<li>Suavidad</li>
+<li>Velocidad de adaptación</li>
+<li>Comportamiento ante ruido y movilidad</li>
+</ul>
+
+<h3>5.2 Pruebas en aislamiento</h3>
+<p>BIS presenta mayor reacción ante cambios bruscos y menor error sistemático que Classic, CRF y FLEX.</p>
+
+<h3>5.3 Tests de integración: Channel</h3>
+<p>BIS reconstruye canales más rápido y de forma más estable.</p>
+
+<h3>5.4 Tests de integración: Data collection</h3>
+<p>El algoritmo mejora agregación distribuida y reduce tiempos de convergencia.</p>
+
+<h2>6. Conclusion</h2>
+
+<p>
+El algoritmo BIS proporciona:
+<ul>
+<li>Reacción óptima a cambios</li>
+<li>Mejor precisión</li>
+<li>Control de suavidad (si se integra con FLEX)</li>
+<li>Estabilidad incluso en redes ruidosas</li>
+</ul>
+BIS representa un avance sobre los gradientes existentes y propone un nuevo estándar para algoritmos de coordinación espacial.
+</p>
+
+</section>
 
 </body>
 </html>
