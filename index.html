@@ -1414,20 +1414,21 @@ BIS impone una velocidad mínima de propagación de información, evitando que e
 
 <p>La velocidad promedio de la información se expresa como:</p>
 
-<div style="text-align:center; margin: 16px 0; font-size: 20px;">
-$$
-v_{avg}=\frac{2}{3}\cdot\frac{n}{n+1}\cdot\frac{R}{Q}\cdot(1+\hat{\sigma}^2(P))\left(\frac{28}{27}+\frac{16}{27}\hat{\sigma}^2(I)\right)+\frac{v}{2}
-$$
+<div class="equation">
+    \[
+    v_{avg}=\frac{2}{3}\cdot\frac{n}{n+1}\cdot\frac{R}{Q}\cdot(1+\hat{\sigma}^{2}(P))
+    \left(\frac{28}{27}+\frac{16}{27}\hat{\sigma}^{2}(I)\right)+\frac{v}{2}
+    \]
 </div>
 
 <h3>3.2 Fórmula del gradiente BIS</h3>
 
 <p>El cálculo fundamental del gradiente es:</p>
 
-<div style="text-align:center; margin: 16px 0; font-size: 20px;">
-$$
-G(\delta,\delta')=\max\left( G(\delta') + w(\delta,\delta'),\; v\cdot L(\delta,\delta') - r \right)
-$$
+<div class="equation">
+    \[
+    G(\delta,\delta')=\max\Big( G(\delta') + w(\delta,\delta'),\; v\cdot L(\delta,\delta') - r \Big)
+    \]
 </div>
 
 <p>Luego se selecciona el valor mínimo entre los vecinos.</p>
@@ -1481,14 +1482,8 @@ Mejora la agregación distribuida usando múltiples rutas.
 
 <h2>6. Conclusion</h2>
 <p>
-BIS ofrece:
-<ul>
-<li>Alta precisión</li>
-<li>Excelente reacción ante cambios</li>
-<li>Mayor estabilidad</li>
-<li>Mejor suavidad al combinarlo con FLEX</li>
-</ul>
-Es un avance importante en la computación distribuida.
+BIS proporciona una alta precisión en la estimación de gradientes, una respuesta eficiente ante cambios en la red, mayor estabilidad operativa y una suavidad mejorada cuando se integra
+  con FLEX. En conjunto, estas características consolidan a BIS como un avance significativo dentro del campo de la computación distribuida.
 </p>
 
 <!-- Carga de MathJax -->
