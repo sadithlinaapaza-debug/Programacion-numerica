@@ -1118,78 +1118,93 @@ break
     
 <!-- Resumen HTML (Opción D) - Comparación Moore–Penrose vs Gradient Descent -->
   <section id="comparacion" class="section">
+  <!-- MathJax config (required for LaTeX rendering) -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
   <h2>Comparing the Moore–Penrose Pseudoinverse and Gradient Descent — Resumen Ejecutivo</h2>
 
+  <!-- 1. Introducción -->
+  <h3>1. Introducción</h3>
   <p class="theory">
-    Fuente original: <a href="/mnt/data/programacion.pdf" download>Comparing the Moore–Penrose Pseudoinverse and Gradient Descent (programacion.pdf)</a>.
-    Este resumen conserva los subtítulos originales y presenta tablas y datos clave extraídos del documento.
+    El estudio compara dos estrategias para resolver regresión lineal: la solución directa mediante la pseudoinversa de Moore–Penrose
+    y la solución iterativa mediante descenso por gradiente. El objetivo es mapear las condiciones (tamaño, dimensionalidad,
+    condicionamiento) bajo las cuales cada método es preferible en términos de tiempo, estabilidad numérica y precisión.
   </p>
 
-  <!-- INTRODUCCIÓN -->
-  <h3>1 Introduction</h3>
+  <h4>Formulación del modelo</h4>
+  <p class="theory">El modelo lineal se representa como</p>
+  <div class="equation">
+    \[ y = X\beta + \varepsilon \]
+  </div>
+  <p class="theory">y el objetivo OLS es minimizar</p>
+  <div class="equation">
+    \[ S(\beta) = \|X\beta - y\|^2 \]
+  </div>
+
+  <!-- 2. Pseudoinversa -->
+  <h3>2. Solución mediante la Pseudoinversa de Moore–Penrose</h3>
   <p class="theory">
-    El estudio compara dos estrategias para resolver regresión lineal: la solución directa mediante la
-    pseudoinversa de Moore–Penrose y la solución iterativa mediante descenso por gradiente. El objetivo
-    fue mapear las condiciones (tamaño, dimensionalidad, condicionamiento) bajo las cuales cada método
-    es preferible en términos de tiempo de cómputo, estabilidad numérica y precisión predictiva.
+    Si \(X\) tiene rango completo, las ecuaciones normales son:
+  </p>
+  <div class="equation">
+    \[ X^\top X \,\hat{\beta} = X^\top y \]
+  </div>
+  <p class="theory">La solución analítica (cuando existe inversión) es</p>
+  <div class="equation">
+    \[ \hat{\beta}_{\mathrm{pinv}} = (X^\top X)^{-1} X^\top y \]
+  </div>
+  <p class="theory">
+    Cuando \(X\) es singular o mal condicionado se recurre a la pseudoinversa \(X^+\) mediante SVD. Coste computacional típico:
+    \(\mathcal{O}(n d^2 + d^3)\).
   </p>
 
-  <!-- MODEL FORMULATION -->
-  <h3>Background and Theoretical Framework</h3>
-  <h4>Linear Regression Formulation</h4>
-  <p class="theory">Modelo lineal:</p>
-  <div class="equation"><span class="math">y = Xβ + ε</span></div>
-  <p class="theory">Función objetivo (OLS):</p>
-  <div class="equation"><span class="math">S(β) = ||Xβ - y||²</span></div>
-
-  <h4>The Moore–Penrose Pseudoinverse Solution</h4>
+  <!-- 3. Descenso por gradiente -->
+  <h3>3. Solución mediante Descenso por Gradiente</h3>
   <p class="theory">
-    Si X tiene rango completo, la solución por ecuaciones normales es:
+    Descenso por gradiente (batch) con actualización:
+    \( \beta^{(t+1)} = \beta^{(t)} - \alpha \nabla S(\beta^{(t)}) \).
   </p>
-  <div class="equation"><span class="math">XᵀX β̂ = Xᵀy</span></div>
-  <div class="equation"><span class="math">β̂_{pinv} = (XᵀX)⁻¹ Xᵀ y</span></div>
-  <p class="theory">Cuando X no es de rango completo se usa la pseudoinversa X⁺ (SVD). Coste típico: <span class="math">O(nd² + d³)</span>.</p>
-
-  <h4>Gradient Descent Optimization</h4>
-  <p class="theory">Regla de actualización (batch GD):</p>
-  <div class="equation"><span class="math">β^{(t+1)} = β^{(t)} - α ∇S(β^{(t)})</span></div>
-  <p class="theory">Gradiente para OLS:</p>
-  <div class="equation"><span class="math">∇S(β) = 2 Xᵀ (Xβ - y)</span></div>
-  <p class="theory">Actualización concreta:</p>
-  <div class="equation"><span class="math">β^{(t+1)} = β^{(t)} - 2α Xᵀ (Xβ^{(t)} - y)</span></div>
-  <p class="theory">Costo por iteración: <span class="math">O(nd)</span>. Convergencia sensible a la tasa de aprendizaje α y al condicionamiento.</p>
-
-  <!-- METHODOLOGY -->
-  <h3>3 Methodology</h3>
-
-  <h4>Synthetic Data Experiments — Data generation & parameter sweep</h4>
+  <div class="equation">
+    \[ \nabla S(\beta) = 2 X^\top (X\beta - y) \]
+  </div>
+  <p class="theory">Por tanto:</p>
+  <div class="equation">
+    \[ \beta^{(t+1)} = \beta^{(t)} - 2\alpha X^\top (X\beta^{(t)} - y) \]
+  </div>
   <p class="theory">
-    Se generó X con control del espectro singular (factor "cond" = σ_d / σ_1) para simular distintos grados de condicionamiento.
-    y se construyó como y = X β* + ε con β* conocido (vector de unos) y ruido gaussiano.
+    Coste por iteración: \(\mathcal{O}(n d)\). Convergencia sensible a la tasa de aprendizaje \(\alpha\) y al condicionamiento de \(X\).
   </p>
 
-  <h4>Methods Implementation</h4>
+  <!-- 4. Metodología -->
+  <h3>4. Metodología Experimental</h3>
+  <p class="theory">
+    Experimentos con datos sintéticos (controlando espectro singular y condición) y conjuntos reales (California Housing, UCI Diabetes).
+    Implementaciones: pseudoinverse vía SVD; GD batch con \(\alpha\) fijo, tolerancia y tope de iteraciones.
+  </p>
+
+  <h4>Métricas</h4>
   <ul>
-    <li>Pseudoinverse: numpy.linalg.pinv (SVD).</li>
-    <li>Batch Gradient Descent: aprendizaje fijo α = 0.01, tolerancia ||β(t+1)-β(t)||₂ &lt; 1e-6, máximo 10 000 iteraciones.</li>
+    <li>Tiempo de ejecución (segundos, wall-clock).</li>
+    <li>Error cuadrático medio (MSE): \( \mathrm{MSE} = \frac{1}{n}\|X\hat{\beta}-y\|_2^2 \).</li>
+    <li>Número de iteraciones (solo GD).</li>
   </ul>
 
-  <h4>Performance Metrics</h4>
-  <ul>
-    <li>Runtime (segundos, wall-clock).</li>
-    <li>Accuracy: Mean Squared Error (MSE) = (1/n)||Xβ̂ - y||₂².</li>
-    <li>Iterations to convergence (solo GD).</li>
-  </ul>
+  <!-- 5. Resultados: tablas con marco azul suave -->
+  <h3>5. Analysis of Results</h3>
 
-  <!-- RESULTS: tablas -->
-  <h3>4 Analysis of Results</h3>
-  <h4>4.1 Overview — Tabla resumen (Synthetic experiments)</h4>
-
-  <table class="data-table">
+  <h4>5.1 Synthetic Data — Extracto de resultados</h4>
+  <table class="table-bordered-blue data-table">
     <caption>Table 1 — Synthetic Data Experiment Results (extracto)</caption>
     <thead>
       <tr>
-        <th>n</th><th>d</th><th>cond</th><th>time pinv (s)</th><th>err pinv (MSE)</th>
+        <th>n</th><th>d</th><th>cond</th>
+        <th>time pinv (s)</th><th>err pinv (MSE)</th>
         <th>time gd (s)</th><th>err gd (MSE)</th><th>iters gd</th>
       </tr>
     </thead>
@@ -1205,12 +1220,10 @@ break
     </tbody>
   </table>
 
-  <h4>4.1 (cont.) — Descriptive statistics (Table 2)</h4>
-  <table class="data-table small">
+  <h4>5.2 Descriptive statistics</h4>
+  <table class="table-bordered-blue data-table small">
     <caption>Table 2 — Descriptive statistics (aggregated)</caption>
-    <thead>
-      <tr><th>statistic</th><th>n</th><th>d</th><th>cond</th><th>time pinv (s)</th><th>err pinv</th><th>time gd (s)</th><th>err gd</th><th>iters gd</th></tr>
-    </thead>
+    <thead><tr><th>statistic</th><th>n</th><th>d</th><th>cond</th><th>time pinv</th><th>err pinv</th><th>time gd</th><th>err gd</th><th>iters gd</th></tr></thead>
     <tbody>
       <tr><td>count</td><td>8</td><td>8</td><td>8</td><td>8</td><td>8</td><td>8</td><td>8</td><td>8</td></tr>
       <tr><td>mean</td><td>3000.0</td><td>30.0</td><td>0.5005</td><td>0.00620</td><td>0.00983</td><td>1.66206</td><td>17.04951</td><td>7665.1</td></tr>
@@ -1220,8 +1233,8 @@ break
     </tbody>
   </table>
 
-  <h4>Grouped summaries (Table 3 & 4)</h4>
-  <table class="data-table tiny">
+  <h4>5.3 Grouped summaries (runtimes & MSE)</h4>
+  <table class="table-bordered-blue data-table tiny">
     <caption>Table 3 — Avg runtimes grouped by d & cond</caption>
     <thead><tr><th>d</th><th>cond</th><th>time pinv (s)</th><th>time gd (s)</th></tr></thead>
     <tbody>
@@ -1232,7 +1245,7 @@ break
     </tbody>
   </table>
 
-  <table class="data-table tiny">
+  <table class="table-bordered-blue data-table tiny">
     <caption>Table 4 — Avg MSE grouped by d & cond</caption>
     <thead><tr><th>d</th><th>cond</th><th>err pinv</th><th>err gd</th></tr></thead>
     <tbody>
@@ -1243,55 +1256,87 @@ break
     </tbody>
   </table>
 
-  <!-- KEY FINDINGS -->
-  <h4>4.5 Key observations & practical guidance</h4>
+  <!-- Key findings -->
+  <h4>5.4 Observaciones clave y guía práctica</h4>
   <ul>
-    <li><strong>Pseudoinverse (Moore–Penrose)</strong>: solución directa y exacta; consistentemente baja MSE; rápida para n≤5k, d≤50 en los experimentos; coste O(nd² + d³).</li>
-    <li><strong>Gradient Descent (batch)</strong>: escalable por diseño para problemas grandes, coste por iteración O(nd); sin embargo, su número de iteraciones crece drásticamente con mal condicionamiento y puede no converger dentro del presupuesto (10k iter en los tests).</li>
-    <li><strong>Condicionamiento</strong>: GD es muy sensible. En cond=0.001 el err_gd aumenta muchísimo (p. ej. >13 o >55) mientras err_pinv permanece ~0.01.</li>
-    <li><strong>Recomendación práctica</strong>: usar pseudoinverse cuando la memoria y cómputo lo permitan; en escenarios masivos preferir variantes iterativas (SGD/mini-batch/Adam) y aplicar preprocesado (escalado, regularización o precondicionadores).</li>
-    <li><strong>Híbridos</strong>: calcular solución directa en submuestras o reducción dimensional (PCA) para warm-start de GD en el conjunto completo.</li>
+    <li><strong>Pseudoinverse (Moore–Penrose):</strong> solución directa y exacta; consistentemente baja MSE; rápida para n ≤ 5k, d ≤ 50 en los experimentos.</li>
+    <li><strong>Gradient Descent (batch):</strong> escalable por diseño; el número de iteraciones crece drásticamente con mal condicionamiento y puede no converger dentro del presupuesto (10k iteraciones).</li>
+    <li><strong>Condicionamiento:</strong> en cond = 0.001, err_gd aumenta muchísimo (p. ej. >13 o >55) mientras err_pinv permanece ~0.01.</li>
+    <li><strong>Recomendación práctica:</strong> usar pseudoinverse cuando la memoria y cómputo lo permitan; para escenarios masivos preferir SGD/mini-batch/Adam con preprocesado (escalado, regularización, precondicionadores).</li>
+    <li><strong>Estrategia híbrida:</strong> usar SVD / PCA o solución directa sobre submuestras para warm-start de GD en el conjunto completo.</li>
   </ul>
 
-  <!-- COMPARATIVE SUMMARY TABLE -->
-  <h4>Comparative summary (condensed)</h4>
-  <table class="compare-table">
-    <thead><tr><th>Aspect</th><th>Moore–Penrose (pinv)</th><th>Gradient Descent (batch)</th></tr></thead>
+  <!-- Comparative summary table -->
+  <h4>Comparative summary</h4>
+  <table class="table-bordered-blue compare-table">
+    <thead>
+      <tr><th>Aspect</th><th>Moore–Penrose (pinv)</th><th>Gradient Descent (batch)</th></tr>
+    </thead>
     <tbody>
-      <tr><td>Complexity</td><td>O(nd² + d³) — SVD / inversion</td><td>O(k · n d) (k = iters)</td></tr>
-      <tr><td>Accuracy</td><td>Exact / low MSE even en ill-conditioned</td><td>Good if well-conditioned; poor si ill-conditioned</td></tr>
-      <tr><td>Stability</td><td>Num. robust (SVD)</td><td>Depende de α, preproc y condicionamiento</td></tr>
-      <tr><td>When to use</td><td>n,d moderados, necesidad de exactitud</td><td>n muy grande o cuando no cabe X en memoria; usar variantes SGD/mini-batch</td></tr>
+      <tr><td>Complexity</td><td>\(\mathcal{O}(n d^2 + d^3)\) — SVD / inversion</td><td>\(\mathcal{O}(k \cdot n d)\) (k = iters)</td></tr>
+      <tr><td>Accuracy</td><td>Exact / low MSE even in ill-conditioned cases</td><td>Good if well-conditioned; poor if ill-conditioned</td></tr>
+      <tr><td>Stability</td><td>Numerically robust (SVD)</td><td>Depends on \(\alpha\), preproc and conditioning</td></tr>
+      <tr><td>When to use</td><td>n,d moderate and need for exactness</td><td>n very large or when X doesn't fit memory; use SGD/mini-batch</td></tr>
     </tbody>
   </table>
 
-  <h3>5 Conclusion</h3>
+  <!-- Conclusion -->
+  <h3>6. Conclusiones</h3>
   <p class="theory">
-    En los experimentos presentados, la pseudoinversa fue la opción preferida para conjuntos de tamaño pequeño-moderado y también en
-    escenarios mal condicionados, debido a su precisión y estabilidad numérica. El descenso por gradiente resulta viable para grandes volúmenes,
-    pero requiere cuidadoso preprocesamiento y ajustes (learning rate, regularización) para evitar mala convergencia.
+    En los experimentos presentados, la pseudoinversa fue la opción preferida para conjuntos de tamaño pequeño-moderado y
+    también en escenarios mal condicionados, debido a su precisión y estabilidad numérica. El descenso por gradiente es
+    viable para grandes volúmenes, pero requiere cuidadoso preprocesamiento y ajustes (learning rate, regularización) para
+    evitar mala convergencia.
   </p>
 
-  <p class="theory small">
-    Archivo fuente: <a href="/mnt/data/programacion.pdf" download>programacion.pdf</a> (texto y tablas extraídos del PDF).
-  </p>
+
+  <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
 </section>
 
-<!-- Estilos para este resumen -->
+<!-- Estilos (tablas con marco azul suave y ecuaciones MathJax) -->
 <style>
-  #resumen-comparacion .equation { text-align:center; margin:12px 0; font-size:1.1rem; }
-  #resumen-comparacion .math { padding:6px 10px; display:inline-block; border-radius:6px; background:#f7f9fb; font-family: "Times New Roman", serif; font-weight:600; }
-  #resumen-comparacion .data-table, #resumen-comparacion .compare-table { width:100%; border-collapse:collapse; margin:12px 0 20px; }
-  #resumen-comparacion .data-table th, #resumen-comparacion .data-table td,
-  #resumen-comparacion .compare-table th, #resumen-comparacion .compare-table td {
-    border:1px solid rgba(0,0,0,0.08); padding:8px; text-align:center; font-size:0.95rem;
+  /* Equations */
+  #resumen-comparacion-mathjax .equation { text-align:center; margin:14px 0; }
+  #resumen-comparacion-mathjax .math { font-family: "Times New Roman", serif; font-weight:600; }
+
+  /* Blue bordered tables */
+  .table-bordered-blue {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #2b6cb0; /* marco principal azul */
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 12px 0 18px;
   }
-  #resumen-comparacion .data-table caption { text-align:left; font-weight:700; margin-bottom:6px; }
-  #resumen-comparacion .small { font-size:0.9rem; color:#334e68; }
-  #resumen-comparacion .tiny td { font-size:0.85rem; padding:6px; }
-  #resumen-comparacion .theory { color:#11324d; line-height:1.5; }
-  #resumen-comparacion .compare-table th { background:#e9f2fd; }
-  #resumen-comparacion .data-table thead th { background:#f3f7fb; }
+  .table-bordered-blue th,
+  .table-bordered-blue td {
+    border: 1px solid rgba(43,108,176,0.85);
+    padding: 8px 10px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 0.95rem;
+  }
+  .table-bordered-blue thead th {
+    background: linear-gradient(90deg, rgba(43,108,176,0.12), rgba(127,179,255,0.06));
+    color: #08345b;
+    font-weight: 700;
+  }
+  .table-bordered-blue caption {
+    caption-side: top;
+    text-align: left;
+    font-weight: 700;
+    padding: 8px 6px;
+    color: #06314f;
+  }
+
+  /* Compare table styling */
+  .compare-table th { background:#e8f4ff; color:#07365a; }
+  .compare-table td { text-align:left; padding:10px; }
+
+  /* Utility */
+  #resumen-comparacion-mathjax .theory { color:#11324d; line-height:1.5; }
+  #resumen-comparacion-mathjax .small { font-size:0.9rem; color:#334e68; }
+  #resumen-comparacion-mathjax .tiny td { font-size:0.85rem; padding:6px; }
 </style>
 
 
