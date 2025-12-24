@@ -125,7 +125,7 @@
       <button onclick="show('algoritmo')">Resumen del Articulo</button>
       <button onclick="show('diferencia')">Diferencia Numerica</button>
       <button onclick="show('interpolacion')">Interpolacion</button>
-      <button onclick="show('heramientas')">Herramientas de nedicion</button>
+      <button onclick="show('heramientas')">Herramientas de Medicion</button>
       <button onclick="show('einge')">Eingen Values</button>
       <button onclick="show('markov')">Introduccion Markov</button>
     </div>
@@ -2041,22 +2041,188 @@ Eigenvalores ≈ 6.83 , 1.17
 
 
       
-      <p><a class="download" href=" Interpolación.pdf" download> Interpolación.pdf</a></p>
+      <p><a class="download" href=" Eigenvalores_y_Eigenvectores.pdf" download> Eigenvalores_y_Eigenvectores.pdf</a></p>
         <p class="reflection"><strong>Reflexión:</strong> —</p>
       
       <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
     </section>
   
       <button onclick="show('markov')">Introduccion Markov</button>
-  <!-- Interpolacion -->
-    <section id="interpolacion" class="section">
-      <h2>Interpolacion</h2>
+  <!-- Introduccion Markov -->
+    <section id="markov" class="section">
+      <h2>Introduccion Markov</h2>
       <p class="theory">.</p>
       <p><strong>Fórmula</strong>: \( y = m x + b \)</p>
 
 
+  <h2>EIGENVALUES Y EIGENVECTORS APLICADOS</h2>
+  <h3>Análisis del Flujo de Turistas entre Destinos Principales de Puno</h3>
+
+  <h3>Objetivo de la Práctica</h3>
+  <p>
+    Demostrar la aplicación práctica de eigenvalues (valores propios) y
+    eigenvectors (vectores propios) en un problema real de la región de Puno:
+    el análisis del flujo turístico en el Lago Titicaca.
+  </p>
+
+  <h4>Conceptos clave</h4>
+  <ul>
+    <li>Matrices de transición (Cadenas de Markov)</li>
+    <li>Distribución estacionaria</li>
+    <li>Eigenvalue dominante</li>
+    <li>Convergencia al equilibrio</li>
+  </ul>
+
+  <h4>Aplicaciones prácticas</h4>
+  <ul>
+    <li>Planificación de infraestructura turística</li>
+    <li>Optimización de rutas de transporte</li>
+    <li>Proyección de ingresos por destino</li>
+    <li>Diseño de paquetes turísticos</li>
+  </ul>
+
+  <hr>
+
+  <h3>1. Instalación y Configuración</h3>
+  <pre><code class="language-python">
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy import linalg
+import pandas as pd
+
+plt.rcParams['figure.figsize'] = (12, 8)
+plt.rcParams['font.size'] = 10
+sns.set_style("whitegrid")
+
+print("Librerías importadas correctamente")
+print(f"NumPy versión: {np.__version__}")
+  </code></pre>
+
+  <hr>
+
+  <h3>2. Definición del Problema</h3>
+  <h4>Destinos Turísticos</h4>
+  <ul>
+    <li><strong>Puno Ciudad (PC):</strong> Ciudad base con servicios turísticos</li>
+    <li><strong>Islas Uros (IU):</strong> Islas flotantes, visita de medio día</li>
+    <li><strong>Isla Taquile (IT):</strong> Textilería tradicional</li>
+    <li><strong>Isla Amantaní (IA):</strong> Turismo vivencial</li>
+  </ul>
+
+  <h4>Pregunta de Investigación</h4>
+  <ul>
+    <li>¿Cuál es la distribución de equilibrio de turistas?</li>
+    <li>¿Qué destino es el hub principal?</li>
+    <li>¿Qué tan rápido converge el sistema?</li>
+  </ul>
+
+  <h4>Enfoque Matemático</h4>
+  <pre><code>
+T_ij = P(moverse del destino i al destino j)
+
+El eigenvector asociado a λ = 1
+representa la distribución estacionaria
+  </code></pre>
+
+  <hr>
+
+  <h3>3. Construcción de la Matriz de Transición</h3>
+  <pre><code class="language-python">
+destinos = ['Puno Ciudad', 'Islas Uros', 'Taquile', 'Amantaní']
+T = np.array([
+    [0.25, 0.45, 0.20, 0.10],
+    [0.50, 0.15, 0.25, 0.10],
+    [0.40, 0.10, 0.30, 0.20],
+    [0.55, 0.15, 0.10, 0.20]
+])
+  </code></pre>
+
+  <p>
+    Ejemplo de interpretación:
+    <br>• El 45% de turistas de Puno Ciudad visitan las Islas Uros.
+    <br>• El 55% de turistas de Amantaní regresan a Puno Ciudad.
+  </p>
+
+  <hr>
+
+  <h3>4. Cálculo de Eigenvalues y Eigenvectors</h3>
+  <pre><code class="language-python">
+eigenvalues, eigenvectors = linalg.eig(T.T)
+  </code></pre>
+
+  <p>
+    El eigenvalue dominante cumple:
+    <br><strong>λ ≈ 1</strong> → Existe un estado estacionario
+  </p>
+
+  <hr>
+
+  <h3>5. Distribución Estacionaria</h3>
+  <pre><code class="language-python">
+v_dominante = eigenvectors[:, idx_dominante].real
+dist_estacionaria = v_dominante / v_dominante.sum()
+  </code></pre>
+
+  <p>
+    El eigenvector dominante representa la distribución de turistas a largo plazo.
+    El destino con mayor valor es el <strong>hub turístico</strong>.
+  </p>
+
+  <hr>
+
+  <h3>6. Validación Mediante Simulación</h3>
+  <p>
+    Se simula la evolución del sistema durante 30 días,
+    partiendo de un estado inicial donde todos los turistas llegan primero
+    a Puno Ciudad.
+  </p>
+
+  <pre><code class="language-python">
+estado_inicial = np.array([1.0, 0.0, 0.0, 0.0])
+evolucion[dia + 1] = T.T @ evolucion[dia]
+  </code></pre>
+
+  <p>
+    La simulación converge al eigenvector dominante,
+    confirmando el modelo teórico.
+  </p>
+
+  <hr>
+
+  <h3>7. Visualización de la Red de Flujo Turístico</h3>
+  <p>
+    Los nodos representan destinos y su tamaño indica
+    la importancia en la distribución estacionaria.
+  </p>
+
+  <hr>
+
+  <h3>8. Conclusiones</h3>
+  <ul>
+    <li>Existe una distribución de equilibrio estable.</li>
+    <li>Puno Ciudad actúa como el hub principal del sistema.</li>
+    <li>El sistema converge rápidamente al equilibrio.</li>
+  </ul>
+
+  <hr>
+
+  <h3>9. Resumen Matemático</h3>
+  <pre><code>
+π = Tᵀ π
+
+π es eigenvector de Tᵀ
+λ = 1 es el eigenvalue dominante
+
+||π(t) − π|| ≈ |λ₂|ᵗ
+  </code></pre>
+
+  <p>
+    Si |λ₂| es pequeño → convergencia rápida  
+    Si |λ₂| ≈ 1 → convergencia lenta
+  </p>
       
-      <p><a class="download" href=" Interpolación.pdf" download> Interpolación.pdf</a></p>
+      <p><a class="download" href=" 240251 (3).zip" download> 240251 (3).zip</a></p>
         <p class="reflection"><strong>Reflexión:</strong> —</p>
       
       <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
