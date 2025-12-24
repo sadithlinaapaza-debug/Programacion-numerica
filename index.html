@@ -1498,11 +1498,569 @@ if (!window.MathJax) {
 </section>
 
 
-  <button onclick="show('diferencia')">Diferencia Numerica</button>
-      <button onclick="show('interpolacion')">Interpolacion</button>
-      <button onclick="show('heramientas')">Herramientas de nedicion</button>
-      <button onclick="show('einge')">Eingen Values</button>
+  <!-- Diferencia Numerica -->
+    <section id="diferencia" class="section">
+      <h2>Diferencia Numerica</h2>
+      <p class="theory">.</p>
+      <p><strong>Fórmula</strong>: \( y = m x + b \)</p>
+
+<!-- EJERCICIO 8.1 -->
+<section>
+  <h2>Ejercicio 8.1</h2>
+  <pre><code class="language-r" id="code-81"></code></pre>
+  <div class="actions">
+    <button class="btn btn-copy" onclick="copyCode('code-81')">Copiar</button>
+    <button class="btn btn-download" onclick="downloadFile(urls.ej81,'ejercicio_8_1.R')">Descargar .R</button>
+  </div>
+</section>
+
+<!-- EJERCICIO 8.2 -->
+<section>
+  <h2>Ejercicio 8.2</h2>
+  <pre><code class="language-r" id="code-82"></code></pre>
+  <div class="actions">
+    <button class="btn btn-copy" onclick="copyCode('code-82')">Copiar</button>
+    <button class="btn btn-download" onclick="downloadFile(urls.ej82,'ejercicio_8_2.R')">Descargar .R</button>
+  </div>
+</section>
+
+<!-- EJERCICIO 8.3 -->
+<section>
+  <h2>Ejercicio 8.3</h2>
+  <pre><code class="language-r" id="code-83"></code></pre>
+  <div class="actions">
+    <button class="btn btn-copy" onclick="copyCode('code-83')">Copiar</button>
+    <button class="btn btn-download" onclick="downloadFile(urls.ej83,'ejercicio_8_3.R')">Descargar .R</button>
+  </div>
+</section>
+
+<!-- EJERCICIO 8.4 -->
+<section>
+  <h2>Ejercicio 8.4</h2>
+  <pre><code class="language-r" id="code-84"></code></pre>
+  <div class="actions">
+    <button class="btn btn-copy" onclick="copyCode('code-84')">Copiar</button>
+    <button class="btn btn-download" onclick="downloadFile(urls.ej84,'ejercicio_8_4.R')">Descargar .R</button>
+  </div>
+</section>
+
+<!-- EJERCICIO 8.5 -->
+<section>
+  <h2>Ejercicio 8.5</h2>
+  <pre><code class="language-r" id="code-85"></code></pre>
+  <div class="actions">
+    <button class="btn btn-copy" onclick="copyCode('code-85')">Copiar</button>
+    <button class="btn btn-download" onclick="downloadFile(urls.ej85,'ejercicio_8_5.R')">Descargar .R</button>
+  </div>
+</section>
+
+<!-- EJERCICIO 8.6 -->
+<section>
+  <h2>Ejercicio 8.6</h2>
+  <pre><code class="language-r" id="code-86"></code></pre>
+  <div class="actions">
+    <button class="btn btn-copy" onclick="copyCode('code-86')">Copiar</button>
+    <button class="btn btn-download" onclick="downloadFile(urls.ej86,'ejercicio_8_6.R')">Descargar .R</button>
+  </div>
+</section>
+
+<!-- EJERCICIO 8.7 -->
+<section>
+  <h2>Ejercicio 8.7</h2>
+  <pre><code class="language-r" id="code-87"></code></pre>
+  <div class="actions">
+    <button class="btn btn-copy" onclick="copyCode('code-87')">Copiar</button>
+    <button class="btn btn-download" onclick="downloadFile(urls.ej87,'ejercicio_8_7.R')">Descargar .R</button>
+  </div>
+</section>
+
+<script>
+const urls = {
+  ej81: "https://raw.githubusercontent.com/sadithlinaapaza-debug/Programacion-numerica/54e7194780b162109791ca289f0017d7579575cf/ejercicio%208.1.R",
+  ej82: "https://raw.githubusercontent.com/sadithlinaapaza-debug/Programacion-numerica/54e7194780b162109791ca289f0017d7579575cf/ejercicio%208.2.R",
+  ej83: "https://raw.githubusercontent.com/sadithlinaapaza-debug/Programacion-numerica/54e7194780b162109791ca289f0017d7579575cf/ejercicio%208.3.R",
+  ej84: "https://raw.githubusercontent.com/sadithlinaapaza-debug/Programacion-numerica/54e7194780b162109791ca289f0017d7579575cf/ejercicio%208.4.R",
+  ej85: "https://raw.githubusercontent.com/sadithlinaapaza-debug/Programacion-numerica/54e7194780b162109791ca289f0017d7579575cf/ejercicio%208.5.R",
+  ej86: "https://raw.githubusercontent.com/sadithlinaapaza-debug/Programacion-numerica/54e7194780b162109791ca289f0017d7579575cf/ejercicio%208.6.R",
+  ej87: "https://raw.githubusercontent.com/sadithlinaapaza-debug/Programacion-numerica/54e7194780b162109791ca289f0017d7579575cf/ejercicio%208.7.R"
+};
+
+function loadCode(url, id) {
+  fetch(url)
+    .then(res => res.text())
+    .then(code => {
+      document.getElementById(id).textContent = code;
+      Prism.highlightAll();
+    });
+}
+
+function copyCode(id) {
+  navigator.clipboard.writeText(document.getElementById(id).innerText);
+  alert("Código copiado");
+}
+
+function downloadFile(url, filename) {
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+}
+
+// cargar todos
+loadCode(urls.ej81, "code-81");
+loadCode(urls.ej82, "code-82");
+loadCode(urls.ej83, "code-83");
+loadCode(urls.ej84, "code-84");
+loadCode(urls.ej85, "code-85");
+loadCode(urls.ej86, "code-86");
+loadCode(urls.ej87, "code-87");
+</script>
+
+      
+<p><a class="download" href=" Diferenciación numérica.pdf" download> Diferenciación numérica.pdf</a></p>
+        <p class="reflection"><strong>Reflexión:</strong> —</p>
+      
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
+
+      
+
+  <!-- Interpolacion -->
+    <section id="interpolacion" class="section">
+      <h2>Interpolacion</h2>
+      <p class="theory">.</p>
+      <p><strong>Fórmula</strong>: \( y = m x + b \)</p>
+
+  <h3>1. Interpolación Lineal</h3>
+
+  <h4>Ejercicio 1.1 — Temperatura de CPU</h4>
+  <p>
+    En un servidor de bases de datos se registró la temperatura de la CPU: 
+    a los 10 minutos es 65 °C y a los 30 minutos sube a 85 °C.
+    Se desea estimar la temperatura a los 20 minutos para activar control de ventilación.
+  </p>
+
+  <pre><code class="language-r">
+x <- c(10, 30)
+y <- c(65, 85)
+x_int <- 20
+y_int <- y[1] + (y[2] - y[1]) * (x_int - x[1]) / (x[2] - x[1])
+cat("Temperatura estimada:", y_int, "°C\n")
+  </code></pre>
+
+  <h4>Ejercicio 1.2 — Pérdida de paquetes en red</h4>
+  <p>
+    A 5 Mbps la pérdida es 2% y a 15 Mbps es 5%. 
+    Se estima la pérdida a 10 Mbps para decidir ajustes de QoS.
+  </p>
+
+  <pre><code class="language-r">
+x <- c(5, 15)
+y <- c(2, 5)
+x_int <- 10
+y_int <- y[1] + (y[2] - y[1]) * (x_int - x[1]) / (x[2] - x[1])
+cat("Pérdida estimada:", y_int, "%\n")
+  </code></pre>
+
+  <h4>Ejercicio 1.3 — Crecimiento de usuarios</h4>
+  <p>
+    Una aplicación tenía 500 usuarios en enero y 800 en marzo.
+    Se estima el número de usuarios en febrero para planificar escalado.
+  </p>
+
+  <pre><code class="language-r">
+x <- c(1, 3)
+y <- c(500, 800)
+x_int <- 2
+y_int <- y[1] + (y[2] - y[1]) * (x_int - x[1]) / (x[2] - x[1])
+cat("Usuarios estimados en febrero:", y_int, "\n")
+  </code></pre>
+
+  <h3>2. Interpolación de Lagrange</h3>
+
+  <h4>Ejercicio 2.1 — Latencia de red</h4>
+  <p>
+    Se midieron latencias a distintas velocidades y se desea estimar
+    la latencia a 7 Mbps para modelar la experiencia del usuario.
+  </p>
+
+  <pre><code class="language-r">
+x <- c(1, 5, 10)
+y <- c(80, 50, 30)
+x_int <- 7
+
+P <- function(x_int, x, y){
+  n <- length(x)
+  L <- rep(1, n)
+  for(i in 1:n){
+    for(j in 1:n){
+      if(j != i){
+        L[i] <- L[i] * (x_int - x[j]) / (x[i] - x[j])
+      }
+    }
+  }
+  sum(y * L)
+}
+
+cat("Latencia estimada:", P(x_int, x, y), "ms\n")
+  </code></pre>
+
+  <h3>3. Diferencias Divididas de Newton</h3>
+
+  <h4>Ejercicio 3.1 — Rendimiento de algoritmo</h4>
+  <p>
+    Se mide el tiempo de ejecución de un algoritmo para distintos tamaños
+    y se estima el tiempo para 25 datos usando interpolación de Newton.
+  </p>
+
+  <pre><code class="language-r">
+x <- c(10, 20, 30)
+y <- c(0.5, 1.5, 3.2)
+
+newton_interp <- function(x, y, x_int){
+  n <- length(x)
+  dd <- matrix(0, n, n)
+  dd[,1] <- y
+  for(j in 2:n){
+    for(i in 1:(n-j+1)){
+      dd[i,j] <- (dd[i+1,j-1] - dd[i,j-1]) / (x[i+j-1] - x[i])
+    }
+  }
+  P <- y[1]
+  prod_term <- 1
+  for(i in 1:(n-1)){
+    prod_term <- prod_term * (x_int - x[i])
+    P <- P + dd[1,i+1] * prod_term
+  }
+  P
+}
+
+cat("Tiempo estimado:", newton_interp(x, y, 25), "s\n")
+  </code></pre>
+
+  <h3>4. Interpolación Cuadrática</h3>
+
+  <h4>Ejercicio 4.1 — Carga del sistema</h4>
+
+  <pre><code class="language-r">
+x <- c(1,2,3)
+y <- c(15,40,90)
+modelo <- lm(y ~ poly(x, 2, raw=TRUE))
+pred <- predict(modelo, data.frame(x=2.5))
+cat("Carga estimada:", pred, "%\n")
+  </code></pre>
+
+  <h3>5. Splines Cúbicos</h3>
+
+  <h4>Ejercicio 5.1 — Datos de sensores</h4>
+
+  <pre><code class="language-r">
+library(splines)
+x <- c(0,2,4,6)
+y <- c(20,35,50,65)
+modelo <- splinefun(x,y,method="natural")
+cat("Humedad estimada:", modelo(3.5), "%\n")
+  </code></pre>
+
+  <h3>6. Error de Interpolación</h3>
+
+  <h4>Ejercicio 6.1 — Estimación de error</h4>
+
+  <pre><code class="language-r">
+f <- function(x) x^2
+x <- c(1,3); y <- f(x)
+interp <- y[1] + (y[2]-y[1])*(2-x[1])/(x[2]-x[1])
+error <- abs(f(2)-interp)
+cat("Error estimado:", error, "\n")
+  </code></pre>
+
+
+      
+      <p><a class="download" href=" Interpolación.pdf" download> Interpolación.pdf</a></p>
+        <p class="reflection"><strong>Reflexión:</strong> —</p>
+      
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
+      
+  <!-- Herramientas de Medicion -->
+    <section id="heramientas" class="section">
+      <h2>Herramientas de Medicion</h2>
+      <p class="theory">.</p>
+      <p><strong>Fórmula</strong>: \( y = m x + b \)</p>
+
+
+  <h2>
+    Modelación del Largest Contentful Paint (LCP) mediante Interpolación Numérica
+    usando el Método de Diferencias Divididas de Newton aplicadas a Métricas Web
+    obtenidas con Lighthouse
+  </h2>
+
+  <h3>1. Planteamiento del Problema</h3>
+  <p>
+    Se realizó una evaluación inicial del rendimiento web de las plataformas institucionales
+    de la Universidad Nacional del Altiplano (UNA Puno) y la Universidad Nacional de Juliaca (UNAJ),
+    utilizando la herramienta Google Lighthouse.
+  </p>
+  <p>
+    Esta auditoría generó métricas clave como First Contentful Paint (FCP), Largest Contentful Paint (LCP),
+    Time to First Byte (TTFB), así como indicadores globales de Rendimiento, Accesibilidad,
+    Buenas Prácticas y SEO.
+  </p>
+  <p>
+    Dado que el LCP es una métrica crítica para la experiencia del usuario, se modela su comportamiento
+    en función del FCP mediante interpolación numérica, con el fin de predecir valores de LCP
+    bajo escenarios de carga intermedia.
+  </p>
+
+  <p><strong>Datos reales obtenidos:</strong></p>
+  <ul>
+    <li>UNA Puno: FCP = 2.5 s, LCP = 4.1 s</li>
+    <li>UNAJ Juliaca: FCP = 2.3 s, LCP = 3.0 s</li>
+    <li>Escenario de alta latencia: (5.1 s, 8.3 s)</li>
+  </ul>
+
+  <p>
+    El objetivo es estimar el valor del LCP cuando el FCP alcanza los 3.0 segundos.
+  </p>
+
+  <h3>2. Método Seleccionado: Diferencias Divididas de Newton</h3>
+  <p>
+    El método de Newton permite construir un polinomio interpolante que aproxima la relación
+    entre dos variables a partir de un conjunto reducido de datos. Es adecuado en este caso porque:
+  </p>
+  <ul>
+    <li>Se dispone de pocos puntos de medición.</li>
+    <li>El comportamiento LCP–FCP no es estrictamente lineal.</li>
+    <li>Permite agregar nuevos puntos sin modificar el orden del polinomio.</li>
+  </ul>
+
+  <h3>3. Procedimiento y Desarrollo del Modelo</h3>
+
+  <h4>3.1 Datos utilizados</h4>
+  <p>
+    (x<sub>0</sub>, y<sub>0</sub>) = (2.5, 4.1),
+    (x<sub>1</sub>, y<sub>1</sub>) = (2.3, 3.0),
+    (x<sub>2</sub>, y<sub>2</sub>) = (5.1, 8.3)
+  </p>
+
+  <h4>3.2 Cálculo de Diferencias Divididas</h4>
+  <p><strong>Orden 0</strong></p>
+  <p>
+    f[x<sub>0</sub>] = 4.1,
+    f[x<sub>1</sub>] = 3.0,
+    f[x<sub>2</sub>] = 8.3
+  </p>
+
+  <p><strong>Orden 1</strong></p>
+  <p>
+    f[x<sub>0</sub>, x<sub>1</sub>] = (3.0 − 4.1) / (2.3 − 2.5) = 5.5
+  </p>
+  <p>
+    f[x<sub>1</sub>, x<sub>2</sub>] = (8.3 − 3.0) / (5.1 − 2.3) = 1.892857
+  </p>
+
+  <p><strong>Orden 2</strong></p>
+  <p>
+    f[x<sub>0</sub>, x<sub>1</sub>, x<sub>2</sub>] =
+    (1.892857 − 5.5) / (5.1 − 2.5) = −1.387363
+  </p>
+
+  <h4>3.3 Polinomio Interpolante de Newton</h4>
+  <p>
+    P(x) = 4.1 + 5.5(x − 2.5) − 1.387363(x − 2.5)(x − 2.3)
+  </p>
+
+  <h4>3.4 Evaluación para FCP = 3.0 s</h4>
+  <p>
+    P(3.0) = 4.1 + 2.75 − 0.485577 ≈ 6.36 s
+  </p>
+
+  <h3>4. Resultado</h3>
+  <p>
+    El modelo predice que cuando el FCP alcanza los 3.0 segundos,
+    el Largest Contentful Paint estimado es:
+  </p>
+  <p><strong>LCP ≈ 6.36 segundos</strong></p>
+
+  <h3>5. Conclusión</h3>
+  <p>
+    El análisis muestra que, aun cuando el FCP se mantiene en valores moderados,
+    el LCP continúa siendo elevado, lo cual evidencia problemas profundos
+    en el proceso de renderizado.
+  </p>
+
+  <ul>
+    <li>
+      La plataforma de la UNA Puno presenta bajo rendimiento y requiere optimización
+      de imágenes, diferimiento de JavaScript y mejora del TTFB.
+    </li>
+    <li>
+      La UNAJ Juliaca presenta mejores prácticas, aunque aún requiere mejoras de rendimiento.
+    </li>
+  </ul>
+
+  <p><strong>Ambas plataformas deben priorizar:</strong></p>
+  <ul>
+    <li>Reducción del bloqueo del hilo principal.</li>
+    <li>Optimización de imágenes y recursos críticos.</li>
+    <li>Minimización del Time to First Byte.</li>
+    <li>Mejoras en la estructura del DOM.</li>
+  </ul>
+
+  <p>
+    El modelo interpolante basado en diferencias divididas de Newton constituye
+    una herramienta útil para la planificación técnica y optimización del rendimiento web.
+  </p>
+
+      
+      <p><a class="download" href=" INFORME_DE_HERRAMIENTAS.pdf" download> INFORME_DE_HERRAMIENTAS.pdf</a></p>
+        <p class="reflection"><strong>Reflexión:</strong> —</p>
+      
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
+  
+      
+  <!-- Eingen Values -->
+    <section id="einge" class="section">
+      <h2>Eigenvalores y Eigenvectores</h2>
+      <p class="theory">.</p>
+      <p><strong>Fórmula</strong>: \( y = m x + b \)</p>
+
+  <h3>1. ¿Qué son los Eigenvalores y Eigenvectores?</h3>
+  <p>
+    Imagina que tienes una matriz <strong>A</strong> que transforma vectores.
+    Normalmente un vector cambia de dirección y tamaño, pero existen vectores
+    especiales que solo cambian de tamaño.
+  </p>
+
+  <pre><code>
+Av = λv
+  </code></pre>
+
+  <ul>
+    <li><strong>λ</strong>: eigenvalor (factor de escala)</li>
+    <li><strong>v</strong>: eigenvector (dirección que no cambia)</li>
+  </ul>
+
+  <p>
+    Ejemplos:
+    λ = 2 → el vector se duplica  
+    λ = −1 → el vector se invierte  
+    λ = 0.5 → el vector se reduce a la mitad
+  </p>
+
+  <h3>1.1 ¿Cómo calcular Eigenvalores?</h3>
+  <ol>
+    <li>Formar la matriz (A − λI)</li>
+    <li>Calcular el determinante</li>
+    <li>Resolver det(A − λI) = 0</li>
+    <li>Resolver (A − λI)v = 0</li>
+  </ol>
+
+  <h3>Ejemplo 1: Matriz Diagonal</h3>
+  <pre><code>
+A = |2  0|
+    |0  5|
+  </code></pre>
+
+  <p>Eigenvalores: λ₁ = 2, λ₂ = 5</p>
+
+  <h3>Ejemplo 2: Matriz 2×2 General</h3>
+  <pre><code>
+A = |3  1|
+    |1  3|
+  </code></pre>
+
+  <pre><code>
+det(A − λI) = λ² − 6λ + 8 = 0
+λ₁ = 4 , λ₂ = 2
+  </code></pre>
+
+  <p>Eigenvectores:</p>
+  <pre><code>
+λ = 4 → v = (1, 1)
+λ = 2 → v = (1, −1)
+  </code></pre>
+
+  <h3>2. Importancia en Optimización</h3>
+  <p>
+    Para clasificar puntos críticos se utiliza la matriz Hessiana.
+    Sus eigenvalores determinan el tipo de punto.
+  </p>
+
+  <table border="1" cellpadding="6">
+    <tr>
+      <th>Eigenvalores</th>
+      <th>Tipo de Punto</th>
+    </tr>
+    <tr>
+      <td>Todos positivos</td>
+      <td>Mínimo local</td>
+    </tr>
+    <tr>
+      <td>Todos negativos</td>
+      <td>Máximo local</td>
+    </tr>
+    <tr>
+      <td>Signos mixtos</td>
+      <td>Punto silla</td>
+    </tr>
+  </table>
+
+  <h3>Ejemplo 3: Clasificación de un Punto Crítico</h3>
+  <p>
+    f(x₁,x₂) = x₁² + 3x₂² + 2x₁x₂
+  </p>
+
+  <pre><code>
+H = |2  2|
+    |2  6|
+  </code></pre>
+
+  <pre><code>
+Eigenvalores ≈ 6.83 , 1.17
+  </code></pre>
+
+  <p><strong>Conclusión:</strong> Ambos positivos ⇒ mínimo local</p>
+
+  <h3>3. Ejercicios</h3>
+  <ol>
+    <li>Hallar eigenvalores y eigenvectores de A = diag(4,7)</li>
+    <li>Calcular eigenvalores de B = |1 2| |2 1|</li>
+    <li>
+      Para f(x₁,x₂)=2x₁²+x₂²−2x₁x₂:
+      <ul>
+        <li>Hessiana</li>
+        <li>Eigenvalores</li>
+        <li>Clasificación</li>
+      </ul>
+    </li>
+    <li>Clasificar f(x₁,x₂)=−x₁²−2x₂²</li>
+    <li>Verificar eigenvector v=(2,1) de C y hallar λ</li>
+  </ol>
+
+
+      
+      <p><a class="download" href=" Interpolación.pdf" download> Interpolación.pdf</a></p>
+        <p class="reflection"><strong>Reflexión:</strong> —</p>
+      
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
+  
       <button onclick="show('markov')">Introduccion Markov</button>
+  <!-- Interpolacion -->
+    <section id="interpolacion" class="section">
+      <h2>Interpolacion</h2>
+      <p class="theory">.</p>
+      <p><strong>Fórmula</strong>: \( y = m x + b \)</p>
+
+
+      
+      <p><a class="download" href=" Interpolación.pdf" download> Interpolación.pdf</a></p>
+        <p class="reflection"><strong>Reflexión:</strong> —</p>
+      
+      <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
+    </section>
 
 </body>
 </html>
