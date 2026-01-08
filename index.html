@@ -21,49 +21,33 @@
 
   <style>
    :root{
+  /* Fondo y tarjetas */
   --bg:#F6ECFF;
   --card:#FFFFFF;
 
-  --purple-main:#C4B5FD;
-  --purple-soft:#EDE9FE;
-
-  --pink-main:#FBCFE8;
-  --pink-strong:#F472B6;
-
-  --green-main:#BBF7D0;
-  --green-strong:#4ADE80;
-
-  --blue-main:#BAE6FD;
-  --blue-strong:#38BDF8;
-
-  --fuchsia:#E879F9;
-
+  /* Texto */
+  --accent:#7C3AED;
+  --muted:#4C1D95;
   --text-main:#3B0764;
   --text-soft:#5B21B6;
 
-  --shadow:0 12px 28px rgba(124,58,237,0.18);
-
-  --mono:'Fira Code', monospace;
-  --ui:'Inter', system-ui, Arial, sans-serif;
-
-     :root{
-  /* ====== COMPATIBILIDAD ====== */
-  --accent:#7C3AED;        /* púrpura elegante */
-  --muted:#4C1D95;         /* texto principal */
-
-  --u1-main:#C4B5FD;       /* morado pastel */
+  /* Unidad I - Morado pastel */
+  --u1-main:#C4B5FD;
   --u1-glow:#EDE9FE;
 
-  --u2-main:#BBF7D0;       /* verde claro */
+  /* Unidad II - Verde pastel */
+  --u2-main:#BBF7D0;
   --u2-glow:#DCFCE7;
 
-  --neon:#F472B6;          /* rosado suave */
+  /* Acentos */
+  --neon:#F472B6;
+  --fuchsia:#E879F9;
+
+  /* Otros */
+  --shadow:0 12px 28px rgba(124,58,237,0.18);
+  --mono:'Fira Code', monospace;
+  --ui:'Inter', system-ui, Arial, sans-serif;
 }
-
-}
-
-
-
 
 
     *{box-sizing:border-box}
@@ -233,6 +217,13 @@
     box-shadow .25s ease,
     filter .25s ease;
 }
+    .unit-content button{
+  color:#3B0764 !important;
+}
+.unit-content button:hover{
+  color:white !important;
+}
+
 
 /* Hover */
 .unit-content button:hover{
