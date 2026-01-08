@@ -95,6 +95,32 @@
       .hero h1{ font-size:18px }
       .hero h2{ font-size:16px }
     }
+
+    .unit-box{
+  width:100%;
+  background:linear-gradient(180deg,#b7dbff,#4fa3ff);
+  color:#ffffff;
+  border-radius:12px;
+  padding:12px;
+  font-weight:700;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 6px 14px rgba(3,76,130,0.15);
+}
+
+.unit-content{
+  width:100%;
+  display:none;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  margin-bottom:12px;
+}
+
+.unit-content.show{
+  display:flex;
+}
+
   </style>
 </head>
 <body>
@@ -105,35 +131,46 @@
       <h3>Programación Numérica — FINESI</h3>
       <p><strong>Estudiante:</strong> Sadith Lina Apaza &nbsp; | &nbsp; <strong>Docente:</strong> Ing. Fred Torres Cruz</p>
     </div>
+<div class="nav">
 
-    <div class="nav">
-      <strong style="width:100%;text-align:center;color:#034a7a;">UNIDAD I – MÓDULOS</strong>
-      <button onclick="show('home')">Inicio</button>
-      <button onclick="show('mod1')">Módulo 1</button>
-      <button onclick="show('mod2')">Módulo 2</button>
-      <button onclick="show('mod3')">Módulo 3</button>
-      <button onclick="show('mod4')">Módulo 4</button>
-      <button onclick="show('mod5')">Módulo 5</button>
-      <button onclick="show('mod6')">Módulo 6</button>
-      <button onclick="show('mod7')">Módulo 7</button>
-      <button onclick="show('mod8')">Módulo 8</button>
-      <strong style="width:100%;text-align:center;color:#034a7a;margin-top:10px;">
+  <!-- UNIDAD I -->
+  <div class="unit-box" onclick="toggleUnit('u1')">
+    UNIDAD I – MÓDULOS
+  </div>
+  <div id="u1" class="unit-content">
+    <button onclick="show('mod1')">Módulo 1</button>
+    <button onclick="show('mod2')">Módulo 2</button>
+    <button onclick="show('mod3')">Módulo 3</button>
+    <button onclick="show('mod4')">Módulo 4</button>
+    <button onclick="show('mod5')">Módulo 5</button>
+    <button onclick="show('mod6')">Módulo 6</button>
+    <button onclick="show('mod7')">Módulo 7</button>
+    <button onclick="show('mod8')">Módulo 8</button>
+  </div>
+
+  <!-- UNIDAD II -->
+  <div class="unit-box" onclick="toggleUnit('u2')">
     UNIDAD II – APLICACIONES
-  </strong>
-      <button onclick="show('docentes')">Docentes</button>
-      <button onclick="show('indiceh')">Índice H</button>
-      <button onclick="show('gradiente')">Gradiente</button>
-      <button onclick="show('OLSyGD')">Metodo OLS y GD</button>
-      <button onclick="show('comparacion')">comparacion</button>
-      <button onclick="show('Supervivencia')">Supervivencia</button>
-      <button onclick="show('algoritmo')">Resumen del Articulo</button>
-      <button onclick="show('diferencia')">Diferencia Numerica</button>
-      <button onclick="show('interpolacion')">Interpolacion</button>
-      <button onclick="show('heramientas')">Herramientas de Medicion</button>
-      <button onclick="show('poster')">POSTER</button>
-      <button onclick="show('einge')">Eingen Values</button>
-      <button onclick="show('markov')">Introduccion Markov</button>
-    </div>
+  </div>
+  <div id="u2" class="unit-content">
+    <button onclick="show('docentes')">Docentes</button>
+    <button onclick="show('indiceh')">Índice H</button>
+    <button onclick="show('gradiente')">Gradiente</button>
+    <button onclick="show('OLSyGD')">Método OLS y GD</button>
+    <button onclick="show('comparacion')">Comparación</button>
+    <button onclick="show('Supervivencia')">Supervivencia</button>
+    <button onclick="show('algoritmo')">Resumen del Artículo</button>
+    <button onclick="show('diferencia')">Diferencia Numérica</button>
+    <button onclick="show('interpolacion')">Interpolación</button>
+    <button onclick="show('heramientas')">Herramientas de Medición</button>
+    <button onclick="show('poster')">Póster</button>
+    <button onclick="show('einge')">Eigen Values</button>
+    <button onclick="show('markov')">Introducción Markov</button>
+  </div>
+
+</div>
+
+    
 
     <!-- HOME / INSTRUCCIONES -->
     <section id="home" class="section active">
@@ -2258,5 +2295,12 @@ evolucion[dia + 1] = T.T @ evolucion[dia]
       
       <a class="back" href="#" onclick="show('home');return false;">⬅ Volver al inicio</a>
     </section>
+
+  <script>
+  function toggleUnit(id){
+    document.getElementById(id).classList.toggle('show');
+  }
+</script>
+
 </body>
 </html>
