@@ -29,6 +29,17 @@
       --radius:16px;
       --mono:'Fira Code', monospace;
       --ui:'Inter', system-ui, Arial, sans-serif;
+      :root{
+  /* Paleta creativa / tecnológica */
+  --u1-main:#2563eb;    /* azul tech */
+  --u1-glow:#60a5fa;
+
+  --u2-main:#7c3aed;    /* violeta tech */
+  --u2-glow:#c084fc;
+
+  --neon:#22d3ee;       /* acento cian */
+}
+
     }
     *{box-sizing:border-box}
     body{
@@ -98,15 +109,33 @@
 
     .unit-box{
   width:100%;
-  background:linear-gradient(180deg,#b7dbff,#4fa3ff);
-  color:#ffffff;
-  border-radius:12px;
-  padding:12px;
-  font-weight:700;
+  padding:16px;
+  border-radius:16px;
+  font-weight:800;
   text-align:center;
   cursor:pointer;
-  box-shadow:0 6px 14px rgba(3,76,130,0.15);
+  color:white;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.25),
+    inset 0 0 0 rgba(255,255,255,0);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    filter .25s ease;
 }
+
+.unit-box:hover{
+  transform:translateY(-4px) scale(1.01);
+  filter:brightness(1.08);
+  box-shadow:
+    0 16px 40px rgba(0,0,0,0.35),
+    0 0 18px var(--neon);
+}
+
 
 .unit-content{
   width:100%;
@@ -114,8 +143,21 @@
   flex-wrap:wrap;
   gap:10px;
   justify-content:center;
-  margin-bottom:12px;
+  margin-bottom:14px;
+  animation:fadeSlide .35s ease;
 }
+
+@keyframes fadeSlide{
+  from{
+    opacity:0;
+    transform:translateY(-8px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
 
 .unit-content.show{
   display:flex;
@@ -133,10 +175,12 @@
     </div>
 <div class="nav">
 
-  <!-- UNIDAD I -->
-  <div class="unit-box" onclick="toggleUnit('u1')">
-    UNIDAD I – MÓDULOS
-  </div>
+  <div class="unit-box" style="
+  background:linear-gradient(135deg,var(--u1-main),var(--u1-glow));
+" onclick="toggleUnit('u1')">
+  UNIDAD I 
+</div>
+
   <div id="u1" class="unit-content">
     <button onclick="show('mod1')">Módulo 1</button>
     <button onclick="show('mod2')">Módulo 2</button>
@@ -149,9 +193,12 @@
   </div>
 
   <!-- UNIDAD II -->
-  <div class="unit-box" onclick="toggleUnit('u2')">
-    UNIDAD II – APLICACIONES
-  </div>
+  <div class="unit-box" style="
+  background:linear-gradient(135deg,var(--u2-main),var(--u2-glow));
+" onclick="toggleUnit('u2')">
+  UNIDAD II 
+</div>
+
   <div id="u2" class="unit-content">
     <button onclick="show('docentes')">Docentes</button>
     <button onclick="show('indiceh')">Índice H</button>
